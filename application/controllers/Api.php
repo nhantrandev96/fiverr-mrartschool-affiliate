@@ -122,11 +122,11 @@ class API extends MY_Controller{
 				else if((int)$commition_setting['status'] == 2 && in_array($refid, $disabled_for)){ $refid = 0; }
 
 				$custom_fields = array();
-                foreach ($this->input->post(null,true) as $key => $value) {
-                	if(!in_array($key, array('affiliate_id','terms','cpassword','firstname','lastname','email','username','password'))){
-                		$custom_fields[$key] = $value;
-                	}
-                }
+				foreach ($this->input->post(null,true) as $key => $value) {
+					if(!in_array($key, array('affiliate_id','terms','cpassword','firstname','lastname','email','username','password'))){
+						$custom_fields[$key] = $value;
+					}
+				}
 
 				$data = $this->user->insert(array(
 					'firstname'                 => $this->input->post('firstname',true),
@@ -209,12 +209,12 @@ class API extends MY_Controller{
 						$this->insertnotification($notificationData);
 					}
 
-                    $post['user_type'] = 'user';
+          $post['user_type'] = 'user';
 
 					$json['success']  =  "You've Successfully registered";
 					unset($json['errors']);
-                    $user_details_array=$this->user->login($this->input->post('username',true));
-                    $this->load->model('Mail_model');
+					$user_details_array=$this->user->login($this->input->post('username',true));
+					$this->load->model('Mail_model');
 					$this->Mail_model->send_register_mail_api($post,__('user.welcome_to_new_user_registration'));
 				}
 			}

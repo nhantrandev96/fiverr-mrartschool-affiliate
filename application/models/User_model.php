@@ -110,20 +110,18 @@ class User_model extends MY_Model{
 		)
 	);	
 
-	function login($username) {
-		return $this->db->where('username',$username)
-		->get('users')->row_array();
-		/*->where('status',1)*/
+	function login($username, $type = '') {
+		return !empty($type) ? $this->db->where('username',$username)->where('type', $type)->get('users')->row_array() : $this->db->where('username',$username)->get('users')->row_array();
 	}
 	
-    function getCountries(){
-        return $this->db->select('id,name')->from('countries')->get()->result_array();
-    }
-    function getState($country_id){
-		return $this->db->select('id,name')->from('states')->where('country_id', $country_id)->get()->result_array();
-    }
-    function update_user_login($user_id) {
-        return $this->db->where('id', $user_id)->update('users', array('online' => '1'));
+	function getCountries(){
+			return $this->db->select('id,name')->from('countries')->get()->result_array();
+	}
+	function getState($country_id){
+	return $this->db->select('id,name')->from('states')->where('country_id', $country_id)->get()->result_array();
+	}
+	function update_user_login($user_id) {
+			return $this->db->where('id', $user_id)->update('users', array('online' => '1'));
 	}
 	function update_user($user_id,$url) {
 		return $this->db->where('id', $user_id)->update('users',$url);

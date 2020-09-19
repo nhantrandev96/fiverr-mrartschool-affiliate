@@ -42,7 +42,7 @@ class Pagebuilder extends MY_Controller {
 			$this->form_validation->set_rules('terms', 'Terms and Condition', 'required');
 			$this->form_validation->set_rules('password', 'Password', 'required|trim', array('required' => '%s is required'));
 			$this->form_validation->set_rules('cpassword', 'Confirm Password', 'required|trim', array('required' => '%s is required'));
-            $this->form_validation->set_rules('cpassword', 'Confirm Password', 'required|trim|matches[password]', array('required' => '%s is required'));
+      $this->form_validation->set_rules('cpassword', 'Confirm Password', 'required|trim|matches[password]', array('required' => '%s is required'));
 
 			$json['errors'] = array();
 
@@ -126,15 +126,14 @@ class Pagebuilder extends MY_Controller {
 				$checkUsername = $this->db->query("SELECT id FROM users WHERE username like ". $this->db->escape($this->input->post('username',true)) ." ")->num_rows();
 				if($checkUsername > 0){ $json['errors']['username'] = "Username Already Exist"; }
 
-				/*if(!isset($post['terms'])){
-					$json['warning'] = __('user.accept_our_affiliate_policy');
-				}*/
+				// if(!isset($post['terms'])){
+				// 	$json['warning'] = __('user.accept_our_affiliate_policy');
+				// }
 
 				if(count($json['errors']) == 0){	
 					$user_type = 'user';
 					$geo = $this->ip_info();
 					
-
 					$refid = !empty($refid) ? base64_decode($refid) : 0;
 					$commition_setting = $this->Product_model->getSettings('referlevel');
 
@@ -143,11 +142,11 @@ class Pagebuilder extends MY_Controller {
 					else if((int)$commition_setting['status'] == 2 && in_array($refid, $disabled_for)){ $refid = 0; }
 
 					$custom_fields = array();
-                    foreach ($this->input->post(null,true) as $key => $value) {
-                    	if(!in_array($key, array('affiliate_id','terms','cpassword','firstname','lastname','email','username','password'))){
-                    		$custom_fields[$key] = $value;
-                    	}
-                    }
+					foreach ($this->input->post(null,true) as $key => $value) {
+						if(!in_array($key, array('affiliate_id','terms','cpassword','firstname','lastname','email','username','password'))){
+							$custom_fields[$key] = $value;
+						}
+					}
 
 					$data = $this->user->insert(array(
 						'firstname'                 => $this->input->post('firstname',true),
@@ -195,13 +194,13 @@ class Pagebuilder extends MY_Controller {
 						'sale_commission'           => '0',
 						'sale_commission_paid'      => '0',
 						'status'                    => '1',
-						'value'                    => json_encode($custom_fields),
+						'value'                    	=> json_encode($custom_fields),
 					));
 
-					/*$this->db->insert("paypal_accounts", array(
-                        'paypal_email' => $this->input->post('paypal_email',true),
-                        'user_id' => $data,
-                    ));*/
+					// $this->db->insert("paypal_accounts", array(
+					// 		'paypal_email' => $this->input->post('paypal_email',true),
+					// 		'user_id' => $data,
+					// ));
 					$post['refid'] = !empty($refid) ? base64_decode($refid) : 0;
 					if(!empty($data) && $user_type == 'user'){
 						$notificationData = array(
@@ -232,20 +231,20 @@ class Pagebuilder extends MY_Controller {
 							$this->insertnotification($notificationData);
 						}
 						$json['success']  =  "You've Successfully registered";
-	                    $user_details_array=$this->user->login($this->input->post('username',true));
-	                    $this->load->model('Mail_model');
+						$post['type'] = 'user';
+						$user_details_array=$this->user->login($this->input->post('username',true));
+						$this->load->model('Mail_model');
 
-
-	                    $post['user_type'] = 'user';
-	                    $this->user->update_user_login($user_details_array['id']);
+						$post['user_type'] = 'user';
+						$this->user->update_user_login($user_details_array['id']);
 						$this->Mail_model->send_register_mail($post,__('user.welcome_to_new_user_registration'));
-	                    if ($user_type == 'user') {
-	                    	$this->session->set_userdata(array('user'=>$user_details_array));
-	                    	$json['redirect'] = base_url('usercontrol/dashboard');
-	                    } else {
-	                    	$this->session->set_userdata(array('client'=>$user_details_array));
-	                    	$json['redirect'] = base_url('clientcontrol/dashboard');
-	                    }
+						if ($user_type == 'user') {
+							$this->session->set_userdata(array('user'=>$user_details_array));
+							$json['redirect'] = base_url('usercontrol/dashboard');
+						} else {
+							$this->session->set_userdata(array('client'=>$user_details_array));
+							$json['redirect'] = base_url('clientcontrol/dashboard');
+						}
 					}
 				}
 			}

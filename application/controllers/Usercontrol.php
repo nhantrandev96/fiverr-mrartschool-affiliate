@@ -374,13 +374,13 @@ class Usercontrol extends MY_Controller {
 	   
 	    return $output;
 	}
-    public function getState(){
-        $this->load->model('User_model');
-        $country_id = $this->input->post('country_id',true);
-        $states = $this->User_model->getState($country_id);
-        echo json_encode($states);
-        die;
-    }
+	public function getState(){
+		$this->load->model('User_model');
+		$country_id = $this->input->post('country_id',true);
+		$states = $this->User_model->getState($country_id);
+		echo json_encode($states);
+		die;
+	}
 	public function auth($action){
 		$json = array();
 		$post = $this->input->post(null,true);
@@ -396,7 +396,7 @@ class Usercontrol extends MY_Controller {
 					if($checking_key != 'admin_login'){
 						$json['errors']['username'] = 'Invalid Recaptcha';
 					}
-					//$json['errors']['g-recaptcha-response'] = 'Invalid Recaptcha';
+					// $json['errors']['g-recaptcha-response'] = 'Invalid Recaptcha';
 				}
 			}
 
@@ -434,33 +434,30 @@ class Usercontrol extends MY_Controller {
 			$post = $this->input->post(null,true);
 			if( count($json['errors']) == 0 ){
 				if($this->authentication->login($username, $password)){
-					$user_details_array=$this->user->login($username);
-
+					$user_details_array=$this->user->login($username, $type = $post['type']);
 					if(!empty($user_details_array['username']) && sha1($password)==$user_details_array['password']){
-
 						if($user_details_array['status']){
 							
 							if($user_details_array['type'] == 'user' && isset($post['type']) && $post['type'] == 'user' ){
 								$this->user->update_user_login($user_details_array['id']);
 								$this->session->set_userdata(array('user'=>$user_details_array));
 								$json['redirect'] = base_url('usercontrol/dashboard');
-
-							}else if($user_details_array['type'] == 'admin' && isset($post['type']) && $post['type'] == 'admin' ){
-		                        $this->user->update_user_login($user_details_array['id']);
-		                        $this->session->set_userdata(array('administrator'=>$user_details_array));
-		                        $json['redirect'] = base_url('admincontrol/dashboard');
-		                    }else if($user_details_array['type'] == 'client' && !isset($post['type'])){
-		                        $this->user->update_user_login($user_details_array['id']);
-		                        $this->session->set_userdata(array('client'=>$user_details_array));
-		                        $l = $this->session->userdata('login_data');
-		                        if($l['refid'] && $l['product_slug'] && $l['user_id']){
+							} else if($user_details_array['type'] == 'admin' && isset($post['type']) && $post['type'] == 'admin'){
+									$this->user->update_user_login($user_details_array['id']);
+									$this->session->set_userdata(array('administrator'=>$user_details_array));
+									$json['redirect'] = base_url('admincontrol/dashboard');
+							} else if($user_details_array['type'] == 'client' && !isset($post['type'])){
+								$this->user->update_user_login($user_details_array['id']);
+								$this->session->set_userdata(array('client'=>$user_details_array));
+								$l = $this->session->userdata('login_data');
+								if($l['refid'] && $l['product_slug'] && $l['user_id']){
 									$json['redirect'] = base_url('product/payment/'. $l['product_slug'].'/'.$l['user_id']);
-								}else if($this->session->userdata('refer_id')){
+								} else if($this->session->userdata('refer_id')){
 									$json['redirect'] = base_url('store/'. base64_encode($this->session->userdata('refer_id')));
-								}else{
+								} else {
 									$json['redirect'] = base_url('store/profile/');
 								}
-		                    }else {
+		          } else {
 								$json['errors']['username'] = __('user.invalid_valid_user');
 							}
 						} else{
@@ -600,18 +597,18 @@ class Usercontrol extends MY_Controller {
 								$this->insertnotification($notificationData);
 							}
 							$json['success']  =  "You've Successfully registered";
-		                    $user_details_array=$this->user->login($this->input->post('username',true));
-		                    $this->load->model('Mail_model');
-		                    
-		                    $this->user->update_user_login($user_details_array['id']);
+							$user_details_array=$this->user->login($this->input->post('username',true));
+							$this->load->model('Mail_model');
+							
+							$this->user->update_user_login($user_details_array['id']);
 							$this->Mail_model->send_register_mail($post,__('user.welcome_to_new_user_registration'));
-		                    if ($user_type == 'user') {
-		                    	$this->session->set_userdata(array('user'=>$user_details_array));
-		                    	$json['redirect'] = base_url('usercontrol/dashboard');
-		                    } else {
-		                    	$this->session->set_userdata(array('client'=>$user_details_array));
-		                    	$json['redirect'] = base_url('clientcontrol/dashboard');
-		                    }
+							if ($user_type == 'user') {
+								$this->session->set_userdata(array('user'=>$user_details_array));
+								$json['redirect'] = base_url('usercontrol/dashboard');
+							} else {
+								$this->session->set_userdata(array('client'=>$user_details_array));
+								$json['redirect'] = base_url('clientcontrol/dashboard');
+							}
 						}
 					}
 				}

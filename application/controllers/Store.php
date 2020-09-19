@@ -7,23 +7,32 @@ error_reporting(0);
 
 class Store extends MY_Controller {
 	function __construct($params = array()) {
-        parent::__construct();
-        $this->load->library("storeapp");
-        $this->load->helper('cookie');
+		parent::__construct();
+		$this->load->library("storeapp");
+		$this->load->helper('cookie');
+		$this->load->model('user_model', 'user');
+		$this->load->model('Product_model');
+		$this->load->model('PagebuilderModel');
+		
+		$store_setting = $this->Product_model->getSettings('store');
 
-        $this->load->model('Product_model');
-        $store_setting = $this->Product_model->getSettings('store');
-		if(!$store_setting['status']){ show_404(); }
+		if(!$store_setting['status']){
+			show_404();
+		}
 		___construct(1);
 
 		$user = $this->session->userdata('client');
 		if (isset($user['id'])) {
 			$this->Product_model->ping($user['id']);
 		}
-    }
+  }
 
 	private function getUser($user_id){
 		return $this->db->query("SELECT * FROM users WHERE id=". (int)$user_id)->row_array();
+	}
+
+	public function userlogins(){
+		return $this->session->userdata('user');
 	}
 
 	public function change_language($language_id){
@@ -280,14 +289,14 @@ class Store extends MY_Controller {
 				$all_is_download_product = 1;
 			}
 
-			/*if($any_downloadable){
-				foreach ($data['products'] as $key => $value) {
-					if($value['product_type'] == 'virtual'){
-						$this->cart->remove($value['cart_id']);
-					}
-				}
-			}*/
-			//$data['products'] = $this->cart->getProducts();
+			// if($any_downloadable){
+			// 	foreach ($data['products'] as $key => $value) {
+			// 		if($value['product_type'] == 'virtual'){
+			// 			$this->cart->remove($value['cart_id']);
+			// 		}
+			// 	}
+			// }
+			// $data['products'] = $this->cart->getProducts();
 
 			$this->load->model('Product_model');
 			$data['checkout_url']= $this->cart->getStoreUrl('checkout');
@@ -304,28 +313,31 @@ class Store extends MY_Controller {
 				$data['allow_shipping'] = false;
 			}
 
-    		$data['shipping_error_message'] = $shipping_setting['shipping_error_message'];
+    	$data['shipping_error_message'] = $shipping_setting['shipping_error_message'];
 
 			$data['show_blue_message'] = false;
-    		if((int)$shipping_setting['shipping_in_limited'] == 1){
-    			$data['show_blue_message'] = true;
-    		}
+			if((int)$shipping_setting['shipping_in_limited'] == 1){
+				$data['show_blue_message'] = true;
+			}
 
-    		$country = $this->Product_model->getShippingCountry();
+    	$country = $this->Product_model->getShippingCountry();
 			if(is_array($country)){
 				$userArray = $this->db->query("SELECT * FROM users WHERE id = ". (int)$user['id'])->row_array();
-        		if($userArray && !isset($country[$userArray['Country']])){
-        			$data['shipping_not_allow_error_message'] = $shipping_setting['shipping_error_message'];
-        		} else {
-    				$data['show_blue_message'] = false;
-        		}
+				if($userArray && !isset($country[$userArray['Country']])){
+					$data['shipping_not_allow_error_message'] = $shipping_setting['shipping_error_message'];
+				} else {
+				$data['show_blue_message'] = false;
+				}
 			}
 
 			if (isset($data['shipping_not_allow_error_message'] )) {
-    			$data['show_blue_message'] = false;
+    		$data['show_blue_message'] = false;
 			}
 
-			//$this->session->unset_userdata('last_order_id', $order_id);
+			// $this->session->unset_userdata('last_order_id', $order_id);
+			
+			$register_form = $this->PagebuilderModel->getSettings('registration_builder');
+			$data['customField'] = json_decode($register_form['registration_builder'],1);
 
 			$this->storeapp->view("checkout",$data);
 		}else{
@@ -573,25 +585,25 @@ class Store extends MY_Controller {
 					$this->load->helper('string');
 					
 					for($i=0; $i<$count_file; $i++){
-				        $FILES['downloadable_files']['name'] = md5(random_string('alnum', 10));
-				        $FILES['downloadable_files']['type'] = $files['type'][$i];
-				        $FILES['downloadable_files']['tmp_name'] = $files['tmp_name'][$i];
-				        $FILES['downloadable_files']['error'] = $files['error'][$i];
-				        $FILES['downloadable_files']['size'] = $files['size'][$i];    
-				     	
-				     	$extension = pathinfo($files['name'][$i], PATHINFO_EXTENSION);
-				     	if(in_array($extension, array('jpeg','jpg','pdf','gif','doc','docx','png','zip','tar'))){
-				     		move_uploaded_file($FILES['downloadable_files']['tmp_name'], APPPATH.'/downloads_order/'. $FILES['downloadable_files']['name']);
-							
-							$downloadable_files[] = array(
-								'type' => $FILES['downloadable_files']['type'],
-								'name' => $FILES['downloadable_files']['name'],
-								'mask' => $files['name'][$i],
-							);
-				     	}else{
-				     		$json['error'] = "File type {$extension} not allow";
-				     	}
-		    		}
+						$FILES['downloadable_files']['name'] = md5(random_string('alnum', 10));
+						$FILES['downloadable_files']['type'] = $files['type'][$i];
+						$FILES['downloadable_files']['tmp_name'] = $files['tmp_name'][$i];
+						$FILES['downloadable_files']['error'] = $files['error'][$i];
+						$FILES['downloadable_files']['size'] = $files['size'][$i];    
+						
+						$extension = pathinfo($files['name'][$i], PATHINFO_EXTENSION);
+						if(in_array($extension, array('jpeg','jpg','pdf','gif','doc','docx','png','zip','tar'))){
+							move_uploaded_file($FILES['downloadable_files']['tmp_name'], APPPATH.'/downloads_order/'. $FILES['downloadable_files']['name']);
+						
+						$downloadable_files[] = array(
+							'type' => $FILES['downloadable_files']['type'],
+							'name' => $FILES['downloadable_files']['name'],
+							'mask' => $files['name'][$i],
+						);
+						}else{
+							$json['error'] = "File type {$extension} not allow";
+						}
+					}
 				}
 
 				$data = $this->input->post(null,true);
@@ -1246,7 +1258,6 @@ class Store extends MY_Controller {
 
 		if(count($json['errors']) == 0){
 			$post = $this->input->post(null,true);
-
 			$this->load->model('user_model', 'user');
 			$this->load->model('Product_model');
 			$this->load->library('form_validation');
@@ -1254,7 +1265,7 @@ class Store extends MY_Controller {
 			$this->form_validation->set_rules('l_name', 'Last Name', 'required|trim');
 			$this->form_validation->set_rules('username', 'Username', 'required|trim');
 			$this->form_validation->set_rules('email', 'Email', 'required|valid_email|xss_clean');
-			$this->form_validation->set_rules('phone', 'Phone', 'required');
+			//$this->form_validation->set_rules('phone', 'Phone', 'required');
 			$this->form_validation->set_rules('password', 'Password', 'required|trim', array('required' => '%s is required'));
 			$this->form_validation->set_rules('c_password', 'Confirm Password', 'required|trim', array('required' => '%s is required'));
 			$this->form_validation->set_rules('c_password', 'Confirm Password', 'required|trim|matches[password]', array('required' => '%s is required'));
@@ -1325,7 +1336,7 @@ class Store extends MY_Controller {
 						'notification_title'        =>  __('user.new_client_registration'),
 						'notification_viewfor'      =>  'admin',
 						'notification_actionID'     =>  $data,
-						'notification_description'  =>  $this->input->post('firstname',true).' '.$this->input->post('lastname',true).' register as a client on affiliate Program on '.date('Y-m-d H:i:s'),
+						'notification_description'  =>  $this->input->post('f_name',true).' '.$this->input->post('l_name',true).' register as a client on affiliate Program on '.date('Y-m-d H:i:s'),
 						'notification_is_read'      =>  '0',
 						'notification_created_date' =>  date('Y-m-d H:i:s'),
 						'notification_ipaddress'    =>  $_SERVER['REMOTE_ADDR']
@@ -1336,6 +1347,236 @@ class Store extends MY_Controller {
 					$post['firstname'] = $this->input->post('f_name',true);
 					$post['lastname'] = $this->input->post('l_name',true);
 					$this->Mail_model->send_register_mail($post,__('user.welcome_to_new_client_registration'));
+
+					// Create reseller
+					// $post = $this->input->post(null,true);
+					$post['user_type'] = 'user';
+
+					$login_data = $this->session->userdata("login_data");
+					if($login_data && isset($login_data['refid'])){
+						$post['refid'] = $login_data['refid'];
+					}
+
+					$refid = isset($post['refid']) ? $post['refid'] : '';
+					$post['affiliate_id'] = !empty($refid) ? base64_decode($refid) : 0;
+					
+					if($this->userlogins()){
+						$json['redirect'] = base_url('usercontrol/dashboard');
+					} else {
+						$post = $this->input->post(null,true);
+						// $this->load->library('form_validation');
+						// $this->form_validation->set_rules('f_name', 'First Name', 'required|trim');
+						// $this->form_validation->set_rules('l_name', 'Last Name', 'required|trim');
+						// $this->form_validation->set_rules('username', 'Username', 'required|trim');
+						// $this->form_validation->set_rules('email', 'Email', 'required|valid_email|xss_clean');
+						// $this->form_validation->set_rules('phone', 'Phone', 'required');
+						// $this->form_validation->set_rules('password', 'Password', 'required|trim', array('required' => '%s is required'));
+						// $this->form_validation->set_rules('c_password', 'Confirm Password', 'required|trim', array('required' => '%s is required'));
+						// $this->form_validation->set_rules('c_password', 'Confirm Password', 'required|trim|matches[password]', array('required' => '%s is required'));
+						
+						// $json['errors'] = array();
+
+						$register_form = $this->PagebuilderModel->getSettings('registration_builder');
+						if($register_form){
+							$customField = json_decode($register_form['registration_builder'],1);
+							
+							foreach ($customField as $_key => $_value) {
+								$field_name = 'custom_'. $_value['name'];
+
+								if($_value['required'] == 'true'){
+									if(!isset($post[$field_name]) || $post[$field_name] == ''){
+										$json['errors'][$field_name] = $_value['label'] ." is required.!";
+									}
+								}
+
+								if(!isset($json['errors'][$field_name]) && (int)$_value['maxlength'] > 0){
+									if(strlen( $post[$field_name] ) > (int)$_value['maxlength']){
+										$json['errors'][$field_name] = $_value['label'] ." Maximum length is ". (int)$_value['maxlength'];
+									}
+								}
+
+								if(!isset($json['errors'][$field_name]) && (int)$_value['minlength'] > 0){
+									if(strlen( $post[$field_name] ) > (int)$_value['minlength']){
+										$json['errors'][$field_name] = $_value['label'] ." Minimum length is ". (int)$_value['minlength'];
+									}
+								}
+
+								if(!isset($json['errors'][$field_name]) && $_value['mobile_validation'] == 'true'){
+									// if(!preg_match('/^[0-9]{10}+$/', $post[$field_name])){
+									// 	$json['errors'][$field_name] = $_value['label'] ." Invalid mobile number ";
+									// }
+								}
+							}
+						}
+						
+						if ($this->form_validation->run() == FALSE) {
+							$json['errors'] = array_merge($this->form_validation->error_array(), $json['errors']);
+						}
+						
+						// $googlerecaptcha = $this->PagebuilderModel->getSettings('googlerecaptcha');
+						// if (isset($googlerecaptcha['affiliate_register']) && $googlerecaptcha['affiliate_register']) {
+						// 	if($post['g-recaptcha-response'] == ''){
+						// 		$json['errors']['captch_response'] = 'Invalid Recaptcha';
+						// 	}
+						// }
+						
+						// if( count($json['errors']) == 0 ){
+						// 	if (isset($googlerecaptcha['affiliate_register']) && $googlerecaptcha['affiliate_register']) {
+						// 		$post = http_build_query(
+						// 			array (
+						// 				'response' => $this->input->post('g-recaptcha-response',true),
+						// 				'secret' => $googlerecaptcha['secretkey'],
+						// 				'remoteip' => $_SERVER['REMOTE_ADDR']
+						// 			)
+						// 		);
+						// 		$opts = array('http' => 
+						// 			array (
+						// 				'method' => 'POST',
+						// 				'header' => 'application/x-www-form-urlencoded',
+						// 				'content' => $post
+						// 			)
+						// 		);
+						// 		$context = stream_context_create($opts);
+						// 		$serverResponse = @file_get_contents('https://www.google.com/recaptcha/api/siteverify', false, $context);
+						// 		if (!$serverResponse) {
+						// 			$json['errors']['captch_response'] = 'Failed to validate Recaptcha';
+						// 		}
+						// 		$result = json_decode($serverResponse);
+
+						// 		if (!$result->success) {
+						// 			$json['errors']['captch_response'] = 'Invalid Recaptcha';
+						// 		}
+						// 	}
+						// }
+
+						if( count($json['errors']) == 0){
+							$checkEmail = $this->db->query("SELECT id FROM users WHERE email like ". $this->db->escape($this->input->post('email',true)) ." ")->num_rows();
+							if($checkEmail > 0){ $json['errors']['email'] = "Email Already Exist"; }
+							$checkUsername = $this->db->query("SELECT id FROM users WHERE username like ". $this->db->escape($this->input->post('username',true)) ." ")->num_rows();
+							if($checkUsername > 0){ $json['errors']['username'] = "Username Already Exist"; }
+
+							// if(!isset($post['terms'])){
+							// 	$json['warning'] = __('user.accept_our_affiliate_policy');
+							// }
+
+							$user_type = 'user';
+							$geo = $this->ip_info();
+							
+							$refid = !empty($refid) ? base64_decode($refid) : 0;
+							$commition_setting = $this->Product_model->getSettings('referlevel');
+
+							$disabled_for = json_decode( (isset($commition_setting['disabled_for']) ? $commition_setting['disabled_for'] : '[]'),1); 
+							if((int)$commition_setting['status'] == 0){ $refid  = 0; }
+							else if((int)$commition_setting['status'] == 2 && in_array($refid, $disabled_for)){ $refid = 0; }
+
+							$custom_fields = array();
+							foreach ($this->input->post(null,true) as $key => $value) {
+								if(!in_array($key, array('store_checkout', 'affiliate_id','terms','c_password','f_name','l_name','email','username','password'))){
+									$custom_fields[$key] = $value;
+								}
+							}
+
+							$data = $this->user->insert(array(
+								'firstname'                 => $this->input->post('f_name',true),
+								'lastname'                  => $this->input->post('l_name',true),
+								'email'                     => $this->input->post('email',true),
+								'username'                  => $this->input->post('username',true),
+								'password'                  => sha1($this->input->post('password',true)),
+								'refid'                     => $refid,
+								'type'                      => $user_type,
+								'Country'                   => $geo['id'],
+								'City'                      => (string)$geo['city'],
+								'phone'                     => $geo['city'],
+								'twaddress'                 => '',
+								'address1'                  => '',
+								'address2'                  => '',
+								'ucity'                     => $geo['city'],
+								'ucountry'                  => $geo['id'],
+								'state'                     => $geo['state'],
+								'uzip'                      => '',
+								'avatar'                    => '',
+								'online'                    => '1',
+								'unique_url'                => '',
+								'bitly_unique_url'          => '',
+								'created_at'                => date("Y-m-d H:i:s"),
+								'updated_at'                => date("Y-m-d H:i:s"),
+								'google_id'                 => '',
+								'facebook_id'               => '',
+								'twitter_id'                => '',
+								'umode'                     => '',
+								'PhoneNumber'               => '',
+								'Addressone'                => '',
+								'Addresstwo'                => '',
+								'StateProvince'             => '',
+								'Zip'                       => '',
+								'f_link'                    => '',
+								't_link'                    => '',
+								'l_link'                    => '',
+								'product_commission'        => '0',
+								'affiliate_commission'      => '0',
+								'product_commission_paid'   => '0',
+								'affiliate_commission_paid' => '0',
+								'product_total_click'       => '0',
+								'product_total_sale'        => '0',
+								'affiliate_total_click'     => '0',
+								'sale_commission'           => '0',
+								'sale_commission_paid'      => '0',
+								'status'                    => '1',
+								'value'                    	=> json_encode($custom_fields),
+							));
+
+							// $this->db->insert("paypal_accounts", array(
+							// 	'paypal_email' => $this->input->post('paypal_email',true),
+							// 	'user_id' => $data,
+							// ));
+
+							$post['refid'] = !empty($refid) ? base64_decode($refid) : 0;
+							if(!empty($data) && $user_type == 'user'){
+								$notificationData = array(
+									'notification_url'          => '/userslist/'.$data,
+									'notification_type'         =>  'user',
+									'notification_title'        =>  __('user.new_user_registration'),
+									'notification_viewfor'      =>  'admin',
+									'notification_actionID'     =>  $data,
+									'notification_description'  =>  $this->input->post('f_name',true).' '.$this->input->post('l_name',true).' register as a  on affiliate Program on '.date('Y-m-d H:i:s'),
+									'notification_is_read'      =>  '0',
+									'notification_created_date' =>  date('Y-m-d H:i:s'),
+									'notification_ipaddress'    =>  $_SERVER['REMOTE_ADDR']
+								);
+								$this->insertnotification($notificationData);
+								if ($post['affiliate_id'] > 0) {
+									$notificationData = array(
+										'notification_url'          => '/managereferenceusers',
+										'notification_type'         =>  'user',
+										'notification_title'        =>  __('user.new_user_registration_under_your'),
+										'notification_viewfor'      =>  'user',
+										'notification_view_user_id' =>  $post['affiliate_id'],
+										'notification_actionID'     =>  $data,
+										'notification_description'  =>  $this->input->post('f_name',true).' '.$this->input->post('l_name',true).' has been register under you on '.date('Y-m-d H:i:s'),
+										'notification_is_read'      =>  '0',
+										'notification_created_date' =>  date('Y-m-d H:i:s'),
+										'notification_ipaddress'    =>  $_SERVER['REMOTE_ADDR']
+									);
+									$this->insertnotification($notificationData);
+								}
+								$json['success']  =  "You've Successfully registered";
+								$user_details_array=$this->user->login($this->input->post('username',true));
+								$this->load->model('Mail_model');
+
+								$post['user_type'] = 'user';
+								$this->user->update_user_login($user_details_array['id']);
+								$this->Mail_model->send_register_mail($post,__('user.welcome_to_new_user_registration'));
+								if ($user_type == 'user') {
+									$this->session->set_userdata(array('user'=>$user_details_array));
+									$json['redirect'] = base_url('usercontrol/dashboard');
+								} else {
+									$this->session->set_userdata(array('client'=>$user_details_array));
+									$json['redirect'] = base_url('clientcontrol/dashboard');
+								}
+							}
+						}
+					}
+					// End create reseller
 				}
 			}
 		}

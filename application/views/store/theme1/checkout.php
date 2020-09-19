@@ -46,6 +46,10 @@
 							<div class="col-sm-6">
 								<h5 class="sub-title"><?= __('store.create_a_new_account') ?></h5>
 								<form id="register-form">
+								<script type="text/javascript">
+									var tel_input = false;
+									var grecaptcha = undefined;
+								</script>
 									<input class="form-control" name="store_checkout" type="hidden" value="1">
 									<div class="form-group">
 										<label class="control-label"><?= __('store.first_name') ?></label>
@@ -59,20 +63,158 @@
 										<label class="control-label"><?= __('store.username') ?></label>
 										<input class="form-control" name="username" type="text">
 									</div>
-									
+
+									<?php foreach ($customField as $key => $value) {
+										$required    = (isset($value['required']) && $value['required'] == 'true') ? 'required="required"' : '';
+										$label       = (isset($value['label']) && $value['label'] ) ? $value['label'] : '';
+										$placeholder = (isset($value['placeholder']) && $value['placeholder'] ) ? $value['placeholder'] : '';
+										$className   = (isset($value['className']) && $value['className'] ) ? $value['className'] : '';
+										$name        = 'custom_'.((isset($value['name']) && $value['name'] ) ? $value['name'] : '');
+										$ivalue      = (isset($value['value']) && $value['value'] ) ? $value['value'] : (isset($customValue[$name]) ? $customValue[$name] : '');
+										$maxlength   = (isset($value['maxlength']) && $value['maxlength'] ) ? $value['maxlength'] : '';
+										$min         = (isset($value['min']) && $value['min'] ) ? $value['min'] : '';
+										$max         = (isset($value['max']) && $value['max'] ) ? $value['max'] : '';
+										$mobile_validation         = (isset($value['mobile_validation']) && $value['mobile_validation'] ) ? $value['mobile_validation'] : '';
+										$_customValue = $ivalue;
+
+										switch ($value['type']) {
+											case 'header': 
+												echo  $fields[strtolower($label)]; 
+												if($label == 'Email' && isset($allow_vendor_option)){
+													echo  $fields['is_vendor']; 
+												}
+											break;
+											case 'text':
+												if($mobile_validation == 'true'){ ?>
+													<link rel="stylesheet" href="<?= base_url('assets/plugins/tel/css/intlTelInput.css') ?>?v=<?= av() ?>">
+													<script src="<?= base_url('assets/plugins/tel/js/intlTelInput.js') ?>"></script>
+													<input type="hidden" name='<?= $name ?>' id="phonenumber-input" value="<?= $ivalue ?>" class="<?= $className ?>" placeholder="<?= $placeholder ?>" <?= $required ?> maxlength = '<?= $maxlength ?>' >
+													<div class="form-group">
+														<label for="<?= $name ?>"><?= $label ?></label>
+														<div>
+															<input id="phone" type="text" value="<?= $ivalue ?>">
+														</div>
+													</div>
+													<script type="text/javascript">
+														var tel_input = intlTelInput(document.querySelector("#phone"), {
+															initialCountry: "auto",
+															utilsScript: "<?= base_url('/assets/plugins/tel/js/utils.js?1562189064761') ?>",
+															separateDialCode:true,
+															geoIpLookup: function(success, failure) {
+																$.get("https://ipinfo.io", function() {}, "jsonp").always(function(resp) {
+																	var countryCode = (resp && resp.country) ? resp.country : "";
+																	success(countryCode);
+																});
+															},
+														});
+													</script>
+												<?php } else { ?>
+													<div class="form-group">
+														<label for="<?= $name ?>"><?= $label ?></label>
+														<input type="text" name='<?= $name ?>' id="<?= $name ?>" value="<?= $ivalue ?>" class="<?= $className ?>" placeholder="<?= $placeholder ?>" <?= $required ?> maxlength = '<?= $maxlength ?>' >
+													</div>
+												<?php }
+												break;
+											case 'number': ?>
+												<div class="form-group">
+													<label for="<?= $name ?>"><?= $label ?></label>
+													<input type="number" name="<?= $name ?>" id="<?= $name ?>" class="<?= $className ?>" value="<?= $ivalue ?>" min="<?= $min ?>" max="<?= $max ?>"  <?= $required ?> >
+												</div>
+											<?php
+											break;
+											case 'textarea': ?>
+											<div class="form-group">
+												<label for="<?= $name ?>"><?= $label ?></label>
+												<textarea name="<?= $name ?>" id="<?= $name ?>" class="<?= $className ?>" rows="3" <?= $required ?> maxlength = '<?= $maxlength ?>'><?= $ivalue ?></textarea>
+											</div>
+											<?php
+											break;
+											case 'date': ?>
+											<div class="form-group">
+															<label class="control-label" for="input-date-available"><?= $label ?></label>
+															<div class="input-group date" data-provide="datepicker">
+															<input type="text" class="form-control <?= $className ?>" name="<?= $name ?>" value="<?= $ivalue ?>" placeholder="<?= $placeholder ?>" <?= $required ?>>
+															<div class="input-group-addon">
+																	<span class="glyphicon glyphicon-th"></span>
+															</div>
+													</div>
+														</div>
+											<?php
+											break;
+											case 'checkbox-group':
+											if(isset($value['values'])){
+												echo '<div class="form-group"><label>'.$label.'</label>';
+												foreach ($value['values'] as $k => $v) {
+													$label = (isset($v['label']) && $v['label'] ) ? $v['label'] : '';
+													$ivalue = (isset($v['value']) && $v['value'] ) ? $v['value'] : '';
+													$selected = (isset($value['selected']) && $value['selected'] ) ? "checked='checked'" : ($ivalue == $ivalue);
+												?>
+											
+												<div class="checkbox">
+													<label>
+														<input type="checkbox" name="<?= $name ?>" value="<?= $ivalue ?>" <?= $selected ?> class="<?= $className ?>">
+														<?= $label ?>
+													</label>
+												</div>
+											<?php } ?>
+											</div>
+											<?php } 
+											break;
+											case 'radio-group':
+											if(isset($value['values'])){
+												echo '<div class="form-group"><label>'.$label.'</label>';
+												foreach ($value['values'] as $k => $v) {
+												$label = (isset($v['label']) && $v['label'] ) ? $v['label'] : '';
+												$ivalue = (isset($v['value']) && $v['value'] ) ? $v['value'] : '';
+												$selected = (isset($v['selected']) && $v['selected'] ) ? "selected='selected'" : '';
+											?>
+												<div class="radio">
+													<label>
+														<input type="radio" name="<?= $name ?>" value="<?= $ivalue ?>" <?= $selected ?> class="<?= $className ?>">
+														<?= $label ?>
+													</label>
+												</div>
+											<?php } ?>
+											</div>
+											<?php } 
+											break;
+											case 'select':
+											if(isset($value['values'])){ ?>
+												<div class="form-group">
+													<label for="<?= $name ?>"><?= $label ?></label>
+													<select name="<?= $name ?>" id="<?= $name ?>" class="form-control <?= $class ?>">
+														<?php 
+												
+															foreach ($value['values'] as $k => $v) {
+															$label = (isset($v['label']) && $v['label'] ) ? $v['label'] : '';
+															$ivalue = (isset($v['value']) && $v['value'] ) ? $v['value'] : '';
+															$selected = '';
+															if(isset($edit_view) && $_customValue == $ivalue) {
+																$selected = "selected='selected'";
+															} else if( !isset($edit_view) && isset($v['selected']) && $v['selected']){
+																$selected = "selected='selected'";
+															}
+														?>
+														<option value="<?= $ivalue ?>" <?= $selected ?>><?= $label ?></option>
+														<?php } ?>
+													</select>
+												</div>
+											<?php } 
+											break;
+											default:
+												
+												break;
+										} ?>
+									<?php } ?>
+
+
 									<div class="form-group">
 										<label class="control-label"><?= __('store.email') ?></label>
 										<input class="form-control" name="email" type="email">
 									</div>
 									<link rel="stylesheet" href="<?= base_url('assets/plugins/tel/css/intlTelInput.css') ?>?v=<?= av() ?>">
 									<script src="<?= base_url('assets/plugins/tel/js/intlTelInput.js') ?>"></script>
-									<input type="hidden" name='<?= $name ?>' id="phonenumber-input" value="" class="form-control" placeholder="Phone Number"  >
-									<div class="form-group">
-										<label for="">Phone Number</label>
-										<div>
-											<input id="phone" type="text" name="phone" value="">
-										</div>
-									</div>
+									
 									<script type="text/javascript">
 										var tel_input = intlTelInput(document.querySelector("#phone"), {
 										  initialCountry: "auto",
@@ -477,6 +619,27 @@
 
 		var errorMap = ["Invalid number", "Invalid country code", "Too short", "Too long", "Invalid number"];
 		is_valid = false;
+		if(tel_input){
+			var errorMap = ["Invalid number", "Invalid country code", "Too short", "Too long", "Invalid number"];
+			is_valid = false;
+			var errorInnerHTML = '';
+			if ($("#phone").val().trim()) {
+					if (tel_input.isValidNumber()) {
+							is_valid = true;
+							$("#phonenumber-input").val("+"+tel_input.selectedCountryData.dialCode + $("#phone").val().trim())
+					} else {
+							var errorCode = tel_input.getValidationError();
+							errorInnerHTML = errorMap[errorCode];
+					}
+			} else { errorInnerHTML = 'The Mobile Number field is required.'; }
+			$("#phone").parents(".form-group").removeClass("has-error");
+			$(".register-form .text-danger").remove();
+			if(!is_valid){
+					$("#phone").parents(".form-group").addClass("has-error");
+					$("#phone").parents(".form-group").find('> div').after("<span class='text-danger'>"+ errorInnerHTML +"</span>");
+			}
+		}
+				
 		var errorInnerHTML = '';
 		if ($("#phone").val().trim()) {
 			if (tel_input.isValidNumber()) {
@@ -506,6 +669,7 @@
 			beforeSend:function(){$this.find(".btn-submit").btn("loading");},
 			complete:function(){$this.find(".btn-submit").btn("reset");},
 			success:function(result){
+				console.log(result);
 				$this.find(".has-error").removeClass("has-error");
 				$this.find("span.text-danger").remove();
 				if(result['success']){
@@ -513,22 +677,24 @@
 				}
 				
 				if(result['errors']){
-				
-				    $.each(result['errors'], function(i,j){
-				    	if(i=='captch_response'){
-				    		if(typeof gcaptch['client_register'] != 'undefined'){
-				    			grecaptcha.reset(gcaptch['client_register']);
-				    		}
-				    	}
+					$.each(result['errors'], function(i,j){
+						if(i=='captch_response'){
+							if(typeof gcaptch['client_register'] != 'undefined'){
+								grecaptcha.reset(gcaptch['client_register']);
+							}
+						}
 
-				        $ele = $this.find('[name="'+ i +'"]');
-				        if($ele){
-				            $ele.parents(".form-group").addClass("has-error");
-				            $ele.after("<span class='text-danger'>"+ j +"</span>");
-				        }
-				    })
+							$ele = $this.find('[name="'+ i +'"]');
+							if($ele){
+									$ele.parents(".form-group").addClass("has-error");
+									$ele.after("<span class='text-danger'>"+ j +"</span>");
+							}
+					})
 				}
 			},
+			error:function(error){
+				console.log(error);
+			}
 		})
 		return false;
 	})

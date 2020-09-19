@@ -165,7 +165,7 @@ class Authentication {
 		$user = $this->ci->db
 			->select($this->identifier_field.' as identifier, '.$this->username_field.' as username, '.$this->password_field.' as password')
 			->where($this->username_field, $username)
-			//->where('status', 1)
+			// ->where('status', 1)
 			->get($this->user_table);
 		
 		// Ensure there is a user with that username
