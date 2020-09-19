@@ -1,0 +1,270 @@
+:root {
+    --forny-form-paddings: 2.5rem;
+
+    --forny-color-accent-100: hsla(125, 64%, 93%, 1);
+    --forny-color-accent-500: hsla(211, 91%, 42%, 1);
+    --forny-color-accent-700: hsla(213, 94%, 36%, 1);
+
+    --forny-color-gray-100: hsla(216, 33%, 97%, 1);
+    --forny-color-gray-500: hsla(210, 27%, 70%, 1);
+    --forny-color-gray-900: hsla(244, 17%, 28%, 1);
+
+    --forny-font-family: 'Nunito', sans-serif;
+    --forny-color-text-100: var(--forny-color-gray-100);
+    --forny-color-text: var(--forny-color-gray-500);
+    --forny-color-header: var(--forny-color-gray-900);
+    --forny-link-color: var(--forny-color-accent-500);
+
+    --forny-form-control-border: none;
+    --forny-form-control-padding: var(--forny-p2) var(--forny-p4);
+    --forny-form-control-radius: 12px;
+    --forny-form-control-background: white;
+    --forny-shadow-color: var(--forny-color-gray-300);
+}
+
+.forny-container {
+    display: block;
+    align-items: center;
+    background-color: hsla(216, 33%, 97%, 1);
+    background-color: var(--forny-color-gray-100);
+}
+
+.forny-inner {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+}
+
+.forny-two-pane {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.forny-two-pane > div {
+    flex: 1;
+}
+
+.forny-two-pane > div:first-child {
+    display: flex;
+    align-items: center;
+    overflow: auto;
+}
+
+/*.forny-two-pane > div:last-child {*/
+/*    display: none;*/
+/*    background-image: url(../img/bg-06.png);*/
+/*    background-position: center center;*/
+/*    background-repeat: no-repeat;*/
+/*    background-size: cover;*/
+/*    color: hsla(244, 17%, 28%, 1);*/
+/*    color: var(--forny-color-gray-900);*/
+/*    text-align: center;*/
+/*    align-items: center;*/
+/*    justify-content: center;*/
+/*}*/
+
+.forny-form {
+    padding: 2.5rem;
+    padding: var(--forny-form-paddings);
+}
+
+.forny-container h4 {
+    font-weight: 700;
+}
+
+.forny-container .btn-social {
+    font-weight: 500;
+}
+
+.forny-form .forny-logo {
+    text-align: left;
+    color: hsla(244, 17%, 28%, 1);
+    color: var(--forny-color-gray-900);
+}
+
+@media (min-width: 768px) {
+    .forny-container {
+        background-color: hsla(216, 33%, 97%, 1);
+        background-color: var(--forny-color-gray-100);
+    }
+
+    .forny-two-pane > div:last-child {
+        display: flex;
+    }
+}
+
+.forny-container .btn-social {
+    color: hsla(244, 17%, 28%, 1);
+    color: var(--forny-color-gray-900);
+    background-color: transparent !important;
+    width: auto;
+    display: inline-block;
+    font-size: 0.875rem;
+    font-size: var(--forny-text-sm);
+    padding: 0 !important;
+    margin: 0 !important;
+    margin-right: 1rem !important;
+    margin-right: var(--forny-p4) !important;
+}
+
+.forny-container .btn-social:hover {
+    text-decoration: underline;
+}
+
+/* FORMS */
+
+.forny-form .form-group {
+    margin-bottom: 1rem;
+    margin-bottom: var(--forny-p4);
+    background: white;
+    background: var(--forny-form-control-background);
+    border-radius: 12px;
+    border-radius: var(--forny-form-control-radius);
+    transition: box-shadow 0.3s;
+    border: 1px solid white;
+    border: 1px solid var(--forny-form-control-background);
+}
+
+/* BUTTONS */
+
+.forny-form .btn {
+    border-radius: 12px;
+    border-radius: var(--forny-form-control-radius);
+    font-weight: bold;
+    padding: 0.5rem 2rem;
+    padding: var(--forny-p2) var(--forny-p8);
+}
+
+.forny-form .input-group .input-group-prepend + .form-control {
+    padding-left: 0.5rem;
+    padding-left: var(--forny-p2);
+}
+
+.forny-container .nav-tabs {
+    margin-bottom: 1.5rem;
+    margin-bottom: var(--forny-p6);
+    border-bottom: 0;
+}
+
+.forny-container .nav-tabs a {
+    padding: 0.75rem 2rem;
+    padding: var(--forny-p3) var(--forny-p8);
+    border-top: 2px solid transparent;
+    color: hsla(210, 27%, 70%, 1);
+    color: var(--forny-color-gray-500);
+    border-bottom: 1px solid hsla(210, 27%, 70%, 1);
+    border-bottom: 1px solid var(--forny-color-gray-500);
+}
+
+.forny-container .nav-tabs a.active {
+    border-color: hsla(210, 27%, 70%, 1);
+    border-color: var(--forny-color-gray-500);
+    border-bottom-color: transparent;
+    border-top-color: hsla(211, 91%, 42%, 1);
+    border-top-color: var(--forny-color-accent-500);
+    color: hsla(211, 91%, 42%, 1);
+    color: var(--forny-color-accent-500);
+    font-weight: bold;
+}
+
+form.reg_form label {
+    background: #f5f7fa;
+    display: none;
+}
+form.reg_form label.reg-agree-label {
+    display: block !important;
+}
+
+form.reg_form .form-group,.forny-form .form-group.focused:not(.has-error) {
+    border: none;
+    background: transparent;
+}
+form.reg_form .form-control {
+    background: #fff;
+}
+
+/* Common CSS */
+
+.language-changer {
+    position: absolute;
+    right: 8px;
+    top: 5px;
+    z-index: 999;
+    background: #fff;
+}
+
+.language-changer > a > span {
+    color: #829ab0;
+}
+
+.language-changer > a {
+    border: #829ab075 solid 1px;
+}
+
+.btn-registration{
+    display: block;
+    width: 100%;
+}
+[data-type="login"]{display: none;}
+.reg-agree-label{display: block}
+form.reg_form > legend {
+    display: none;
+}
+.btn-loading {
+  color: transparent !important;
+  pointer-events: none;
+  position: relative;
+}
+
+.btn-loading:after {
+  content: '';
+  -webkit-animation: loader 500ms infinite linear;
+  animation: loader 500ms infinite linear;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  border-right-color: transparent !important;
+  border-top-color: transparent !important;
+  display: block;
+  height: 1.4em;
+  width: 1.4em;
+  position: absolute;
+  left: calc(50% - (1.4em / 2));
+  top: calc(50% - (1.4em / 2));
+  -webkit-transform-origin: center;
+  transform-origin: center;
+  position: absolute !important;
+}
+
+.btn-loading.btn-sm:after, .btn-group-sm > .btn-loading.btn:after {
+  height: 1em;
+  width: 1em;
+  left: calc(50% - (1em / 2));
+  top: calc(50% - (1em / 2));
+}
+
+.btn-loading.btn-secondary:after {
+  border-color: #495057;
+}
+
+@-webkit-keyframes loader {
+  from {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loader {
+  from {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}

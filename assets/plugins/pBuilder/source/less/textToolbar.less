@@ -1,0 +1,134 @@
+#text-toolbar {
+	position: absolute;
+	opacity: 0.95;
+	height: 45px;
+	padding: 7px;
+	background: @panel-background;
+	border-radius: 2px;
+	z-index: 6;
+	.user-select(none);
+
+	#icons-list {
+		display: none;
+		position: absolute;
+		margin-top: 50px;
+		height: 400px;
+		background-color: @panel-background;
+		padding: 5px;
+		width: 100%;
+		left: 0;
+
+		> ul {
+			max-height: 345px;
+			overflow: auto;
+		}
+
+		> input {
+			width: 100%;
+			background-color: @panel-box-background;
+			color: @panel-color;
+			padding: 0 15px;
+			border: none;
+			outline: none;
+			height: 35px;
+			vertical-align: middle;
+			margin-bottom: 10px;
+		}
+
+		li > i {
+			font-size: 25px;
+			width: 25px;
+			color: @panel-color;
+			margin: 6px;
+
+			&:hover {
+				transform: scale(1.4);
+				color: #fff;
+			}
+		}
+	}
+
+	> #toolbar-font, #toolbar-size {
+		background: @panel-box-background;
+		float: left;
+		height: 30px;
+		padding: 4px 14px;
+		margin-right: 5px;
+		border: none;
+		color: @panel-color;
+		border-radius: 3px;
+		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+		outline: none;
+	}
+
+	> #link-details {
+		background: @panel-background;
+		padding: 45px 15px 15px;
+		display: block;
+
+		> input {
+			display: inline-block;
+			width: 43%;
+
+			&:first-of-type {
+				margin-right: 8px;
+			}
+		}
+
+		> .btn {
+			padding-top: 7px;
+			padding-bottom: 7px;
+			margin: 0 0 4px 8px;
+		}
+	}
+
+	> #toolbar-style {
+		float: left;
+		height: 30px;
+		
+		> div {
+			float: left;
+			background: @panel-box-background;	
+			width: 35px;
+			height: 100%;
+			text-align: center;	
+			padding: 6px;
+			margin-right: 2px;
+			border: none;
+			color: @panel-color;
+			border-radius: 3px;
+			box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+			outline: none;
+			font-weight: bold;
+			font: bold 16px Arial, Helvetica, Tahoma, Verdana, Sans-Serif;
+
+			&:hover {
+				background-color: lighten(@panel-box-background, 5%);
+			}
+		}
+
+		> .align-left, .wrap-link {
+			margin-left: 5.5px;
+		}
+
+		> .bold {
+			margin-left: 3px;
+		}
+
+		> .italic {
+			font-style: italic;
+		}
+
+		> .underline {
+			text-decoration: underline;
+		}
+
+		> .strike {
+			text-decoration: line-through;
+		}
+	}
+
+	&:hover {
+		cursor: pointer;
+	}
+}

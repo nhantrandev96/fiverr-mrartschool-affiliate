@@ -1,0 +1,136 @@
+#export-panel {
+	.demo-overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 1000;
+		color: #fff;
+		text-align: center;
+		padding: 0 30%;
+		
+		> p {
+			position: relative;
+			top: 40%;
+			font-size: 15px;
+			.user-select(none);
+		}
+	}
+
+	.inner-content {
+		padding: 15px 30px 5px;
+		
+		&.demo {
+			-webkit-filter: blur(1.3px);
+	    	-moz-filter: blur(1.3px);
+	    	-o-filter: blur(1.3px);
+	    	-ms-filter: blur(1.3px);
+	    	filter: blur(1.3px);
+	    	opacity: 0.3;
+	    	
+		}
+	
+		> .images-column, .html-column, .css-column {
+			height: 97%;
+
+			> h2 {
+				font-size: 20px;
+				.clearfix();
+				height: 30px;
+				margin-top: 0;
+
+				> span {
+					float: left;
+					margin-top: 5px;
+				}
+
+				> .copy-confirmation {
+					float: right;
+					color: lighten( #9a9a9a, 10%);
+					font-size: 13px;
+					margin: 7px 8px 0 0;
+				}
+
+				> .btn {
+					background-color: #ebebeb;
+					border-radius: 3px;
+					border-color: #ebebeb;
+					color: #9a9a9a;
+					float: right;
+					padding: 4px 10px;
+
+					&:active, &:focus {
+						outline: none;
+					}
+				}
+			}
+		}
+
+		> .images-column {
+			overflow: auto;
+
+			li {
+				width: 100%;
+				height: 150px;
+				background-repeat: no-repeat;
+				background-position: center center;
+				background-size: auto auto;
+				.box-shadow(0px 1px 5px 0px rgba(0,0,0,0.3));
+				margin-bottom: 15px;
+				border-radius: 3px;
+				background-color: @gray-lighter;
+
+				&:hover {
+					cursor: pointer;
+				}
+			}
+		}
+	}
+
+	> .flyout-panel-toolbar {
+		padding: 14px 0 0 25px;
+
+		&.demo {
+			-webkit-filter: blur(0.7px);
+	    	-moz-filter: blur(0.7px);
+	    	-o-filter: blur(0.7px);
+	    	-ms-filter: blur(0.7px);
+	    	filter: blur(0.7px);
+	    	opacity: 0.4;
+		}
+
+		> .center-block {
+			
+
+			> select {
+				text-transform: capitalize;
+				margin-right: 2px;
+			}
+
+			> .btn {
+				border-radius: 1px;
+
+				> .fa {
+					margin-right: 5px;
+				}
+
+				&:first-of-type {
+					margin-right: 10px;
+				}
+			}
+		}
+	}
+
+	#html-export-preview, #css-export-preview {
+		height: 92%;
+		height: ~"calc(100% - 30px)";
+		font-size: 14px;
+		.box-shadow(0px 1px 5px 0px rgba(0,0,0,0.3));
+		border-radius: 3px;
+
+		.ace_cursor {
+			color: transparent;
+		}
+	}
+}

@@ -1,0 +1,146 @@
+.flyout-from-right {
+	position: absolute;
+	top: 0;
+	right: -100%;
+	z-index: 50;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.7);
+	.transition(all 0.20s linear);
+	-webkit-transform: translate3d(0,0,0);
+	transform: translate3d(0,0,0);
+
+	.flyout-close {
+		position: absolute;
+		z-index: 1010;	
+		top: 8px;
+		left: -23px;
+        font-size: 44px;
+        background-color: #fff;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+
+        > .icon {
+            position: absolute;
+            top: -11px;
+            left: -12px;
+        }
+		
+		&:hover {
+			cursor: pointer;
+			transform: scale(1.12);
+		}
+	}
+
+	> .flyout-content {		
+		width: 94%;
+		height: 100%;
+		background-color: #fff;
+		position: absolute;
+		right: 0;
+		.transition(top 0.45s linear);
+		backface-visibility: hidden;
+
+		> .inner-content {
+			height: 93%;
+		}
+
+		&.open {
+			z-index: 1001;
+			top: 0;			
+		}
+
+		&.closed {
+			z-index: 1000;
+			top: -300%;
+		}
+
+		> .flyout-panel-toolbar {
+			.user-select(none);
+			height: 7%;
+			background-color: @panel-background;
+			margin: 0;
+            text-align: center;
+
+            .btn-primary {
+                padding: 8px 20px;
+                border-radius: 2px !important;
+            }
+			
+			> .inner {
+				padding: 13px 20px;
+				display: inline-block;
+			}
+			
+			.back-icon {
+				display: inline-block;
+				height: 100%;
+				border-right: @panel-border;
+				vertical-align: top;
+				padding: 16px 28px 0 25px;
+				color: #fff;
+				font-size: 23px;
+
+				&:hover {
+					cursor: pointer;
+					color: darken(#fff, 35%);
+				}
+			}
+			
+			.btn {
+				border-radius: 0;
+
+				&:first-of-type {
+					margin-right: 50px;
+				}
+
+				&:last-of-type {
+					margin-left: 5px;
+				}
+
+				&:hover, &:active, &:focus {
+					outline: none;
+				}
+			}
+
+			&#theme-creator-toolbar  {
+				& .btn:first-of-type {
+					margin-right: 0;
+				}
+
+				& .btn:nth-child(2) {
+					margin-right: 50px;
+				}
+			}
+				
+			.loader, .error-message, .save-status {
+				display: inline-block;
+				color: @panel-color;
+				margin-left: 15px;
+				vertical-align: middle;
+
+				> .fa {
+					font-size: 22px;
+				}
+			}
+
+			input, select {
+				background-color: @panel-box-background;
+				border: @panel-border;
+				color: @panel-color;
+				padding: 6px 12px;
+				outline: none;
+				vertical-align: middle;
+			}
+
+			select {
+				padding: 7px 12px;
+			}
+		}
+	}
+
+	&.open {
+		right: 0;
+	}
+}

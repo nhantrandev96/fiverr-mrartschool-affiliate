@@ -1,0 +1,360 @@
+@font-face {
+  font-family: 'Raleway Regular';
+  src: url(../fonts/Raleway-Medium.ttf);
+}
+
+@font-face {
+  font-family: 'Raleway Black';
+  src: url(../fonts/Raleway-Black.ttf);
+}
+
+@font-face {
+  font-family: 'Raleway Bold';
+  src: url(../fonts/Raleway-Bold.ttf);
+}
+
+
+body{
+    font-family: 'Raleway Regular';
+}
+
+.forny-container a{
+    color: #3a5e91;
+}
+
+.forny-container .alert{
+    margin: 10px 0px;
+}
+
+.forny-two-pane,
+.forny-inner{
+    min-height: 100vh;
+    height: auto !important;
+}
+
+.forny-container .mb-10{
+    margin: 0px !important;
+}
+
+.tearms-page h3,
+.reset-password-form h4,
+.card-title{
+    font-family: 'Raleway Bold';
+    display: block;
+    margin: auto;
+    text-align: center;
+    text-transform: uppercase;
+    color: #3a5e91;
+}
+
+.tearms-page p,
+.reset-password-form p,
+.subtitle{
+    color: #717171;
+}
+
+.tearms-page a,
+.subtitle a{
+    font-family: 'Raleway Bold';
+    color: #3a5e91;
+}
+
+.forny-form .form-group{
+    background-color: transparent !important;
+    border: 0px !important;
+}
+
+.login-card-wrapper{
+    background-color: #fff;
+    border-radius: 25px;
+    filter: drop-shadow(0 0 0.75rem rgba(0,0,0,0.6));
+}
+
+.tearms-page,
+.forget-forms,
+.login-reg-form{
+    height: 500px;
+    overflow-y: auto;
+    width: 400px;
+    margin: auto;
+}
+
+.tearms-page::-webkit-scrollbar,
+.forget-forms::-webkit-scrollbar,
+.login-reg-form::-webkit-scrollbar{
+     width: 8px;
+}
+
+.tearms-page::-webkit-scrollbar-scrollbar-track,
+.forget-forms::-webkit-scrollbar-scrollbar-track,
+.login-reg-form::-webkit-scrollbar-scrollbar-track{
+    background: rgba(58, 94, 145, 0.05); 
+}
+
+.tearms-page::-webkit-scrollbar-thumb,
+.forget-forms::-webkit-scrollbar-thumb,
+.login-reg-form::-webkit-scrollbar-thumb{
+    border-radius: 8px;
+    background: rgba(58, 94, 145, 0.2); 
+}
+
+.tearms-page::-webkit-scrollbar-thumb:hover,
+.forget-forms::-webkit-scrollbar-thumb:hover,
+.login-reg-form::-webkit-scrollbar-thumb:hover {
+    background: rgba(58, 94, 145, 0.3); 
+}
+
+.login-form-container{
+    width: 700px;
+}
+
+.forny-container{
+    position: relative;
+    background-color: transparent !important;
+    overflow: hidden;
+}
+
+.forny-container .background-image{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    background-image: url(../img/bg.png);
+    background-size: cover;
+    z-index: -1;
+    background-position: center;
+}
+
+.forny-form .forny-logo{
+    margin-bottom: 15px;
+}
+
+.forny-form .forny-logo img{
+    display: block;
+    margin: auto;
+}
+
+.forny-form .reset-form{
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+
+.forny-form .login-reg-form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#register{
+    padding-top: 200px;
+    padding-bottom: 30px;
+}
+
+.forny-form .form-group{
+    position: relative;
+}
+
+.forny-form .form-control{
+    background-color: #fff;
+    margin-top: 10px;
+    color: #3c60e2;
+    border-radius: 0px !important;
+}
+
+.forny-form .form-group:before{
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 2px;
+    width: 100%;
+    transition: 0.3s;
+    background-color: #d1d1d1;
+    margin: auto;
+    opacity: 1;
+}
+
+.forny-form .form-group:after{
+    content: '';
+    display: block;
+    height: 2px;
+    width: 0%;
+    transition: 0.3s;
+    background-color: #3a5e91;
+    margin: auto;
+}
+
+.forny-form .form-group.focused:before{
+    opacity:0;
+}
+
+.forny-form .form-group.focused:after{
+    width: 100%;
+}
+
+.forny-form .btn{
+    border-radius: 25px !important;
+}
+
+.forny-form .btn.btn-primary{
+    background-color: #3a5e91;
+}
+
+.forny-form .error-text{
+    font-size: 0.9rem;
+    color: #e1394d;
+}
+
+.tearms-page,
+.forget-forms{
+    padding: 50px;
+    border-radius: 10px;
+}
+
+.tearms-page h3{
+    padding-bottom: 20px;
+}
+
+.iti input, .iti input[type=text]{
+    border: 0px;
+    border-radius: 10px;
+}
+
+form.reg_form label{
+    background: transparent !important;
+}
+
+.reset-password-form button:last-child{
+    background-color: rgba(0,0,0,0.05);
+}
+
+.affiliate-description{
+    color: #fff;
+}
+
+.affiliate-description .paragraph-container{
+    padding-right:150px;
+    padding-left: 30px;
+    height: 60vh;
+    overflow: auto;
+    z-index: 10;
+    direction: rtl;
+}
+
+.affiliate-description .paragraph-container::-webkit-scrollbar {
+  width: 10px;
+}
+.affiliate-description .paragraph-container::-webkit-scrollbar-track {
+  background: #3a5e91; 
+}
+.affiliate-description .paragraph-container::-webkit-scrollbar-thumb {
+  background: #799ac9; 
+}
+.affiliate-description .paragraph-container::-webkit-scrollbar-thumb:hover {
+  background: #5a7db0; 
+}
+
+.affiliate-description .paragraph-container *{
+    position: relative;
+    z-index:2;
+}
+
+.affiliate-description .image-container{
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    display: flex;
+    align-items: center;
+}
+
+.affiliate-description .cog{
+    position: absolute;
+    width: 1000px;
+    right: -70px;
+    top: -200px;
+    -webkit-animation:spin 60s linear infinite;
+    -moz-animation:spin 60s linear infinite;
+    animation:spin 60s linear infinite;
+}
+
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
+.affiliate-description h1,
+.affiliate-description h2,
+.affiliate-description h3,
+.affiliate-description h4,
+.affiliate-description h5,
+.affiliate-description h6{
+    font-family: 'Raleway Black';
+}
+
+.affiliate-description p{
+    margin: 0;
+    font-size: 1rem;
+}
+
+@media(max-width: 600px){
+    .forny-form{
+        padding: 0px !important;
+    }
+    .forny-form .login-reg-form{
+        padding: 25px;
+    }
+    .language-changer{
+        border-radius: 50%;
+        margin: 20px;
+        filter: drop-shadow(0 0 0.75rem rgba(0,0,0,0.4));
+        position: fixed !important;
+    }
+    .language-changer .dropdown-toggle{
+        width:50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 0;
+        padding: 0;
+    }
+}
+
+@media(max-width: 992px){
+    .forny-form{
+        width: 100%;
+        padding: 0;
+    }
+    .tearms-page,
+    .forget-forms,
+    .login-reg-form{
+        margin: auto;
+        width: 95%;
+    }
+    .forny-form-wrapper{
+        display: block !important;
+    }
+    .affiliate-description{
+        text-align: left;
+    }
+    .affiliate-description .image-container{
+         border-bottom-left-radius: 0px;
+         border-top-right-radius: 25px;
+         background-color: #3a5e91;
+    }
+    .affiliate-description p{
+        font-size: 1.1rem;
+    }
+    .affiliate-description .paragraph-container{
+        padding: 30px;
+    }
+    .affiliate-description .cog{
+        display: none;
+    }
+}

@@ -1,0 +1,91 @@
+#settings-panel {
+	background-color: lighten(#f5f5f5, 2%);
+
+	.inner-content {
+		height: 100%;
+		margin: 0;
+	}
+
+	.categories {
+		background-color: @gray-lighter;
+		height: 100%;
+		border-right: 1px solid #ced0d2;
+		padding: 40px 0 0;
+		width: 200px;
+
+
+		li {
+			padding: 12px 20px;
+			color: #f4645f;
+			font-weight: 600;
+			font-size: 14px;
+			border: 1px solid transparent;
+			.transition(all 0.1s linear);
+
+			&:hover {
+				cursor: pointer;
+				border-color: #ced0d2;
+			}
+
+			&.active {
+				background-color: lighten(#f5f5f5, 10%);
+				border: 1px solid #ced0d2;
+				border-right: none;
+			}
+		}
+	}
+
+	.settings {
+		width: ~"calc(100% - 200px)";
+		padding: 40px 30px;
+
+		h2 {
+			font: bold 23px Roboto;
+			padding-bottom: 15px;
+			border-bottom: 1px solid lighten(#ced0d2, 5%);
+			margin: 0 0 30px;
+			color: #586065;
+		}
+
+		.label {
+			color: darken(#6f757a, 10%);
+			font-size: 15px;
+			font-weight: normal;
+			margin-right: 15px;
+			font-family: roboto;
+			padding: 0 0 8px;
+		}
+
+		.help-block {
+			color: lighten(#6f757a, 10%);
+			font-size: 12px;
+			margin: 12px 0 0;
+			border-bottom: 1px solid @gray-lighter;
+			padding-bottom: 15px;
+		}
+
+		.form-group {
+			margin-bottom: 20px;
+		}
+
+		.with-toggle {
+			> .label {
+				display: inline-block;				
+			}
+
+			> .toggle {
+				display: inline-block;
+				vertical-align: bottom;
+				margin-top: 5px;
+			}
+		}
+
+		.with-input {
+			> .form-control {
+				display: inline-block;
+				width: 250px;
+				border: 1px solid #ced0d2;
+			}
+		}
+	}
+}

@@ -1,0 +1,232 @@
+@font-face {
+  font-family: 'Raleway Regular';
+  src: url(../fonts/Raleway-Medium.ttf);
+}
+
+@font-face {
+  font-family: 'Raleway Black';
+  src: url(../fonts/Raleway-Black.ttf);
+}
+
+@font-face {
+  font-family: 'Raleway Bold';
+  src: url(../fonts/Raleway-Bold.ttf);
+}
+
+
+body{
+    font-family: 'Raleway Regular';
+}
+
+.forny-container .alert{
+    margin: 10px 0px;
+}
+
+.forny-two-pane,
+.forny-inner{
+    min-height: 100vh;
+    height: auto !important;
+}
+
+.forny-container .mb-10{
+    margin: 0px !important;
+}
+
+.tearms-page h3,
+.reset-password-form h4,
+.card-title{
+    font-family: 'Raleway Black';
+    color: #3c60e2;
+}
+
+.tearms-page p,
+.reset-password-form p,
+.subtitle{
+    color: #717171;
+}
+
+.tearms-page a,
+.subtitle a{
+    font-family: 'Raleway Bold';
+    color: #3c60e2;
+}
+
+.forny-form .form-group{
+    background-color: transparent !important;
+    border: 0px !important;
+}
+
+.tearms-page,
+.forget-forms,
+.login-reg-form{
+    background-color: #fff;
+    width: 400px;
+    margin: auto;
+}
+
+.login-form-container{
+    width: 700px;
+}
+
+.forny-container{
+    position: relative;
+    background-color: transparent !important;
+    overflow: hidden;
+}
+
+.forny-container .background-image{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    background-image: url(../img/bg.png);
+    background-size: cover;
+    z-index: -1;
+    background-position: center;
+}
+
+.forny-form .forny-logo{
+    margin-bottom: 15px;
+}
+
+.forny-form .forny-logo img{
+    display: block;
+    margin: auto;
+}
+
+.forny-form .login-reg-form{
+    padding: 50px;
+    background-color: rgba(255,255,255,0.8);
+    border-radius: 10px;
+}
+
+.forny-form .form-control{
+    background-color: #fff;
+    margin-top: 10px;
+    color: #3c60e2;
+}
+
+.forny-form .btn{
+    border-radius: 25px !important;
+}
+
+.forny-form .btn.btn-primary{
+    background-color: #3c60e2;
+}
+
+.forny-form .error-text{
+    font-size: 0.9rem;
+    color: #e1394d;
+}
+
+.tearms-page,
+.forget-forms{
+    padding: 50px;
+    background-color: rgba(255,255,255,0.8);
+    border-radius: 10px;
+}
+
+.tearms-page h3{
+    padding-bottom: 20px;
+}
+
+.iti input, .iti input[type=text]{
+    border: 0px;
+    border-radius: 10px;
+}
+
+form.reg_form label{
+    background: transparent !important;
+}
+
+.reset-password-form button:last-child{
+    background-color: rgba(0,0,0,0.05);
+}
+
+.affiliate-description{
+    color: #fff;
+    display: flex;
+    align-items: center;
+}
+
+.affiliate-description .affiliate-description-content{
+    height: 70vh;
+    overflow: auto;
+}
+
+
+.affiliate-description .affiliate-description-content::-webkit-scrollbar {
+  width: 10px;
+}
+.affiliate-description .affiliate-description-content::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+.affiliate-description .affiliate-description-content::-webkit-scrollbar-thumb {
+  background: #6d85de; 
+}
+.affiliate-description .affiliate-description-content::-webkit-scrollbar-thumb:hover {
+  background: #3c60e2; 
+}
+
+.affiliate-description h1,
+.affiliate-description h2,
+.affiliate-description h3,
+.affiliate-description h4,
+.affiliate-description h5,
+.affiliate-description h6{
+    font-family: 'Raleway Black';
+}
+
+.affiliate-description p{
+    margin: 0;
+    font-size: 1rem;
+}
+
+@media(max-width: 600px){
+    .forny-form{
+        padding: 0px !important;
+    }
+    .forny-form .login-reg-form{
+        padding: 25px;
+    }
+    .language-changer{
+        border-radius: 50%;
+        margin: 20px;
+        filter: drop-shadow(0 0 0.75rem rgba(0,0,0,0.4));
+        position: fixed !important;
+    }
+    .language-changer .dropdown-toggle{
+        width:50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 0;
+        padding: 0;
+    }
+}
+
+@media(max-width: 992px){
+    .forny-form{
+        width: 100%;
+        margin-top: 30px;
+    }
+    .tearms-page,
+    .forget-forms,
+    .login-reg-form{
+        margin: auto;
+        width: 95%;
+    }
+    .forny-form-wrapper{
+        display: block !important;
+    }
+    .affiliate-description{
+        width: 95%;
+        text-align: left;
+        padding: 25px;
+    }
+    .affiliate-description p{
+        font-size: 1.1rem;
+    }
+}

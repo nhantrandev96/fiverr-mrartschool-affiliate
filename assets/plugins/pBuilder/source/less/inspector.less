@@ -1,0 +1,697 @@
+#inspector-filter-select {
+    outline: none;
+    height: @panel-input-height;
+    padding: 0 10px 0;
+    background-color: @panel-box-background;
+    border: @panel-border;
+    margin: 13px;
+    width: 88%;
+    border-radius: 3px;
+    color: @panel-color;
+    text-transform: capitalize;
+}
+
+#inspector-inner {
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: ~"calc(100% - 50px)";
+}
+
+#inspector {
+    width: 100%;
+    height: 100%;
+    background: @panel-background;
+    color: @panel-color;
+    .user-select(none);
+    position: relative;
+    overflow: visible !important;
+
+    .element-path {
+        background-color: lighten(@panel-box-background, 5%);
+        margin: 15px;
+        padding: 10px;
+        list-style: none;
+
+        > li {
+            display: inline-block;
+            color: @panel-light-color;
+            cursor: pointer;
+
+            &:hover {
+                .name {
+                    color: lighten(@panel-light-color, 15%);
+                }
+            }
+
+            > i:before {
+                width: 0.7em;
+            }
+
+            &.active {
+                pointer-events: none;
+                color: lighten(@panel-light-color, 15%);
+                font-weight: 500;
+
+                > i {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    .sp-container {
+        display: block;
+        left: 327px;
+        position: fixed !important;
+        min-width: 434px;
+    }
+
+    > #inspector-overlay {
+        height: 100%;
+        position: absolute;
+        background-color: rgba(0,0,0,.5);
+        z-index: 4;
+        width: 100%;
+
+        > .overlay-content {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            font-size: 17px;
+            text-align: center;
+            color: #fff;
+            position: relative;
+            top: ~"calc(50% - 110px)";
+
+            > i {
+                display: block;
+                font-size: 45px;
+            }
+        }
+    }
+
+    #background-arrow {
+        left: 309px;
+        transition: none;
+    }
+
+    .bl-panel-header {
+        border-bottom: 1px solid @panel-box-background;
+        margin: -10px -10px 15px;
+
+        > .name {
+            padding: 8px 0 8px 8px;
+            float: left;
+            font-size: 14px;
+        }
+
+        > .bl-panel-btns {
+            padding: 8px 12px;
+            height: 100%;
+            border-left: 1px solid @panel-box-background;
+            float: right;
+
+            &:hover {
+                background-color: @panel-box-background;
+                cursor: pointer;
+                border-top-right-radius: 6px;
+            }
+        }
+    }
+
+
+    #fill-color, #image, #gradient {
+        width: 30%;
+        display: inline-block;
+        height: 60px;
+        border: 2px solid @panel-color;
+        background-color: @panel-box-background;
+        color: @panel-color;
+        border-radius: 3px;
+        margin-right: 5px;
+        background-image: none;
+        cursor: pointer;
+
+        > .background-box {
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            padding: 7px 0;
+
+            > .icon {
+                font-size: 30px;
+            }
+        }
+
+        > .background-name {
+            margin-top: 5px;
+            color: @panel-color;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        &:hover {
+            color: lighten(@panel-color, 10%);
+            border-color: lighten(@panel-color, 10%);
+        }
+    }
+
+    #gradient {
+        margin-right: 0;
+    }
+
+    #background-flyout-panel {
+        position: fixed;
+        display: block;
+        left: 327px;
+        top: 130px;
+        width: 261px;
+        background-color: @panel-background;
+        padding: 10px;
+        border-radius: 6px;
+        z-index: 5;
+        .box-shadow(-1px 0px 2px rgba(0,0,0,.5));
+
+        .btn-block {
+            border-radius: 2px;
+            border: none;
+            outline: none;
+            box-shadow: 0 5px #27496d;
+            margin: -5px 0 15px;
+
+            &:hover, &:active, &:focus {
+                background-color: darken(@brand-primary, 5%);
+            }
+        }
+
+        #texturePresets, #gradientPresets {
+            display: none;
+        }
+
+        h5 {
+            color: @panel-heading-color;
+            background-color: #fff;
+            margin: 10px -10px;
+            padding: 10px;
+        }
+
+        #img-positioning {
+            padding: 0 10px;
+
+            h5 {
+                margin: 0 -10px;
+            }
+
+            h6 {
+                text-align: center;
+                margin: 0 0 10px;
+            }
+
+            input {
+                outline: none;
+            }
+
+            > .pull-right {
+                width: 80px;
+            }
+
+            .radio {
+                margin: 0;
+            }
+
+            .alignment-box {
+                width: 24px;
+                height: 24px;
+                background-color: @panel-box-background;
+                border-radius: 3px;
+                display: inline-block;
+
+                &:hover {
+                    background-color: @brand-success;
+                    cursor: pointer;
+                }
+
+                &.active {
+                    background-color: @brand-success;
+                }
+
+                &:nth-child(2), &:nth-child(5), &:nth-child(8) {
+                    margin: 0 4px;
+                }
+            }
+        }
+    }
+
+
+    .img-presets-list {
+        list-style: none;
+        padding: 0;
+        max-height: 190px;
+        overflow: hidden;
+
+        li {
+            display: inline-block;
+            padding: 5px;
+
+            > .preset {
+                border: 1px solid @brand-primary;
+                width: 50px;
+                height: 50px;
+
+                &:hover {
+                    cursor: pointer;
+                    border: 2px solid @brand-success;
+                }
+            }
+        }
+    }
+
+    #el-font-weight-button {
+        margin: 0 0 0 5px;
+    }
+
+    label {
+        font-size: 12px;
+        vertical-align: sub;
+        margin: 6px 5px 0 0;
+    }
+
+    #shadows-panel {
+        #shadow-knob-container {
+            margin-bottom: 8px;
+        }
+
+        .slider-group {
+            > .range-slider {
+                width: 70%;
+                display: inline-block;
+            }
+
+            .ui-slider {
+                margin-top: 5px;
+            }
+
+            .slider-label {
+                font-size: 13px;
+            }
+
+            > .pretty-input {
+                width: 20%;
+                display: inline-block;
+                padding: 0;
+                text-align: center;
+                margin: 0 0 -19px 16px;
+                height: 25px;
+                border-radius: 3px;
+            }
+        }
+
+        .ui-selectmenu-button {
+            width: 97px !important;
+            display: inline-block;
+            margin-top: 8px;
+
+            &:last-of-type {
+                margin-right: 0;
+            }
+        }
+
+        .color-picker-trigger {
+            width: 188px;
+            display: inline-block;
+            margin: 0 0 4px 15px;
+            border-radius: 3px;
+            height: 50px;
+        }
+    }
+
+    #visibility {
+        text-align: center;
+        margin: 5px 0 20px;
+
+        > .list-inline {
+            display: block;
+            padding: 0;
+            margin-left: 3px;
+
+            > li {
+                font-size: 20px;
+                background-color: @panel-box-background;
+                padding: 5px 10px;
+                border-radius: 3px;
+                border: 1px solid transparent;
+
+                &.disabled {
+                    color: @panel-color;
+                    background-color: lighten(#222, 3%);
+                    border: 1px solid #000;
+                    border-right: 1px solid #353535;
+                    border-bottom: 1px solid #353535;
+                    border-radius: 3px;
+                }
+
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+    #attributes-panel .btn-block {
+        margin-top: 15px;
+        border-radius: 0;
+        border-bottom: 3px solid darken(@brand-primary, 15%);
+    }
+
+    #attributes-panel input, .pretty-input {
+        background-color: @panel-box-background;
+        border: @panel-border;
+        color: @panel-color;
+        display: inline-block;
+        width: @attributes-select-width;
+        height: @panel-input-height;
+        vertical-align: middle;
+        padding-left: 10px;
+    }
+
+    #custom-attributes {
+        > .form-group {
+            > label {
+                text-transform: capitalize;
+            }
+
+            > input, select {
+                float: right;
+            }
+        }
+
+        .long-name {
+            float: none;
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+    }
+
+    #border-box {
+        .color-picker-trigger {
+            width: 58%;
+            float: left;
+            height: @panel-input-height;
+            margin: 5px 7px 15px 0;
+            background-image: none;
+            border-width: 6px;
+            border-style: solid;
+            background: @panel-box-background;
+            opacity: 0.7;
+        }
+
+        #border-style {
+            width: 38.4%;
+            margin: 5px 0 15px 0;
+            height: @panel-input-height;
+        }
+    }
+
+    .icon-box {
+        width: 30px;
+        height: 28px;
+        text-align: center;
+        font-weight: bold;
+        padding: 5px 5px;
+        font-size: 14px;
+        margin-right: 3px;
+        background: @panel-box-background;
+        float: left;
+        border-radius: 2px;
+
+        &:hover {
+            cursor: pointer;
+            background: darken(@panel-box-background, 1%);
+        }
+
+        &.active {
+            color: @brand-success;
+        }
+    }
+
+    h3 {
+        margin: 0;
+        text-align: center;
+        color: @panel-heading-color;
+        padding: 10px 0;
+        font-size: 21px;
+    }
+
+    .color-picker-trigger {
+        width: 100%;
+        height: @panel-input-height;
+        background-image: url('../images/transparent.png');
+        cursor: pointer;
+    }
+
+    #text-box {
+        > .clearfix {
+            margin: 5px 0;
+
+            .icon-box:last-of-type {
+                margin-right: 0;
+            }
+
+            &:first-of-type {
+                margin-bottom: 10px;
+                margin-top: 0;
+            }
+        }
+
+        .italic {
+            font-style: italic;
+        }
+
+        .underline {
+            text-decoration: underline;
+        }
+
+        .strike {
+            text-decoration: line-through;
+        }
+
+        .overline {
+            text-decoration: overline;
+        }
+    }
+
+    #border-style, #border-width {
+        width: 60%;
+        float: left;
+        height: 30px;
+        margin-top: 15px;
+        background-color: @panel-box-background;
+        border: none;
+        outline: none;
+        border-radius: 2px;
+        text-align: center;
+        font-weight: bold;
+        font-size: 13px;
+    }
+
+    #el-font-size {
+        width: 35%;
+        float: left;
+        height: 28px;
+        background-color: @panel-box-background;
+        border: none;
+        outline: none;
+        border-radius: 2px;
+        text-align: center;
+        font-weight: bold;
+        font-size: 13px;
+        color: @panel-color;
+        margin-right: 11px;
+    }
+
+    #el-font-style-box {
+        margin-bottom: 15px !important;
+    }
+
+    #more-fonts {
+        background: @panel-box-background;
+        padding: 8.4px 15px;
+        text-align: center;
+        font-size: 20px;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    #el-font-family-button {
+        height: 45px;
+        padding-top: 11px;
+        font-size: 16px;
+        font-weight: bold;
+        text-shadow: 0px 1px 2px #000000;
+    }
+
+    #el-font-weight-menu {
+        overflow: auto;
+        > .ui-menu-item {
+            font-size: 12px;
+        }
+    }
+
+    #border-style {
+        padding-left: 7px;
+    }
+
+    #border-width {
+        width: 35%;
+        margin-right: 9px;
+    }
+
+    .radius-boxes {
+        > .big-box {
+            height: (@panel-input-height + 12.5) * 2 !important;
+        }
+
+        > .small-boxes {
+            padding: 0;
+
+            > input {
+                width: 64px !important;
+                margin-bottom: 5px;
+                height: @panel-input-height + 10;
+
+                &:nth-child(1), &:nth-child(3) {
+                    margin-right: 2px;
+                }
+            }
+        }
+    }
+
+    .input-boxes {
+        text-align: center;
+        height: (@panel-input-height+2.5) * 3;
+
+        > .small-boxes > .row {
+            height: @panel-input-height;
+
+            > .col-sm-6 {
+                height: 100%;
+            }
+
+            input {
+                height: 100%;
+            }
+        }
+
+        > .small-boxes > .row > div {
+            margin: 4px 0;
+            padding: 0;
+
+            &:first-of-type {
+                padding-right: 2px;
+            }
+
+            &:last-of-type {
+                padding-left: 2px;
+            }
+        }
+
+        .big-box {
+            height: 100%;
+            padding: 0 5px 0 0;
+
+            > input {
+                height: 100%;
+            }
+        }
+
+        .big-box input, .small-boxes input {
+            width: 100%;
+            background: @panel-box-background;
+            border: @panel-border;
+            padding: 4px;
+            text-align: center;
+            font-size: @panel-box-font-size;
+        }
+    }
+}
+
+#el-class {
+    min-height: 35px;
+    background-color: @panel-box-background;
+    cursor: text;
+    border: @panel-border;
+    color: @panel-color;
+    display: inline-block;
+    width: @attributes-select-width;
+    vertical-align: middle;
+    padding: 1px 5px;
+    float: right;
+
+    > #addclass-flyout {
+        margin-bottom: 6px;
+        height: 22px;
+
+        > #addclass-input {
+            border: @panel-border;
+            border-radius: 0;
+            width: 70%;
+            height: 100%;
+            outline: none;
+        }
+
+        > .btn {
+            border-radius: 0;
+            height: 100%;
+            padding: 0 6px;
+        }
+    }
+
+    > .list-unstyled {
+        padding: 1px 5px;
+
+        > li {
+            background: @brand-primary;
+            cursor: default;
+            margin-bottom: 3px;
+            font-size: 75%;
+            font-family: Helvetica;
+            color: darken(#fff, 5%);
+            margin-right: 3px;
+            border-radius: 0;
+
+            .icon {
+                padding-left: 5px;
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
+
+.arrow-up {
+    position: absolute;
+    right: 12px;
+    top: -13px;
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 15px solid @panel-background;
+}
+
+.arrow-right {
+    width: 0;
+    height: 0;
+    border-top: 18px solid transparent;
+    border-bottom: 18px solid transparent;
+    position: fixed;
+    border-right: 18px solid @panel-background;
+    display: none;
+    .transition(all 0.4s ease-in-out);
+    z-index: 10;
+}

@@ -1,0 +1,45 @@
+<style>
+	
+</style>
+
+    <div class="lr-forms">[sortcode-loginform-build]</div>
+
+<script>
+	({
+        name: 'Login Form',
+        nodes: ['div'],
+        frameworks: ['bootstrap'],
+        types: ['flow'],
+        validChildren: ['flow'],
+        previewScale: '0.25',
+        category: 'forms',
+        icon: 'newspaper',
+        attributes: {
+            type: {
+                list: [
+                    {name: 'Basic', value: ''},
+                    {name: 'Horizontal', value: 'form-horizonal'},
+                    {name: 'Inline', value: 'form-inline' },
+                ],
+                value: '',
+                onAssign: function($scope) {
+                    for (var i = this.list.length - 1; i >= 0; i--) {
+                        if ($scope.selected.node.className.indexOf(this.list[i].value) > -1) {
+                            return this.value = this.list[i];
+                        }
+                    }
+                },
+                onChange: function($scope, type) {
+
+                    //strip any previously assigned type classes from the icon
+                    for (var i = this.list.length - 1; i >= 0; i--) {
+                        $($scope.selected.node).removeClass(this.list[i].value);
+                    };
+
+                    $($scope.selected.node).addClass(type.value);
+                }
+            }
+        },
+        description: 'A form to contain login form elements.',
+    });
+</script>

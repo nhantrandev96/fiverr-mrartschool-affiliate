@@ -1,0 +1,138 @@
+#bootstrap-theme-creator {
+	background-color: #f5f5f5;
+
+	#custom-less {
+		position: absolute;
+		z-index: 1003;
+		bottom: 7%;
+		left: 5%;
+		width: 40%;
+		border: 5px solid @panel-background;
+		border-bottom: 0;
+		border-top-left-radius: 4px;
+		border-top-right-radius: 4px;
+		.transition(all 0.2s linear);
+
+		&.open {
+			height: 550px;
+			border-width: 5px;
+		}
+
+		&.closed {
+			height: 0;
+			overflow: hidden;
+			border-width: 0;
+		}
+
+		> .header {
+			background-color: @panel-background;
+			text-align: center;
+			color: #fff;
+			padding: 7px 0;
+			height: 34px;
+			overflow: hidden;
+
+			> .fa {
+				float: right;
+				margin-right: 10px;
+				color: darken(#fff, 10%);
+
+				&:hover {
+					cursor: pointer;
+					transform: scale(1.2);
+				}
+			}
+		}
+
+		> #custom-less-editor {
+			font-size: 15px;
+			height: ~"calc(100% - 34px)";
+		}
+	}
+
+	> .inner-content {
+		height: 93%;
+	}
+
+	.mCSB_inside > .mCSB_container {
+		margin-right: 5px;
+	}
+
+	.mCSB_draggerContainer {
+		margin-left: 11px;
+	}
+
+	.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
+		width: 5px !important;
+		background-color: darken(#eee, 15%) !important;
+	}
+
+	.mCSB_scrollTools .mCSB_draggerRail {
+		width: 5px;
+		background-color: darken(#eee, 3%) !important;
+	}
+
+	label {
+		color: lighten(#f4645f, 10%);
+	}
+
+	.form-control {
+		outline: none;
+	}
+
+	> .inner-content {
+		> .vars-values-list, .theme-creator-preview, .vars-groups-list {
+			border-right: 10px solid darken(#eee, 3%);
+			height: 100%;
+			overflow: hidden;
+			padding: 10px 15px;
+		}
+
+		> .vars-groups-list {
+			padding: 20px 0 0 25px;
+		}
+
+		> .vars-values-list {
+			padding: 0;
+
+			.mCSB_container {
+				padding: 15px;
+			}
+		}
+	}
+
+	.vars-groups-list {
+
+		ul {
+			margin-left: 40px;
+
+			> li {
+				padding-bottom: 3px;
+				color: #f4645f;
+				font-weight: 600;
+				font-size: 14px;
+				.transition(all 0.1s linear);
+	   			-webkit-transform: translate3d(0,0,0);
+				transform: translate3d(0,0,0);
+
+				&:hover {
+					cursor: pointer;
+					margin-left: 10px;
+					color: darken(#f4645f, 30%);
+				}
+
+				&.active {
+					margin-left: 10px;
+					color: darken(#f4645f, 30%);
+				}
+			}
+		}
+	}
+}
+
+#theme-creator-iframe {
+	width: 100%;
+	height: 100%;
+	border: 1px solid @gray-lighter;
+	border-radius: 3px;
+}

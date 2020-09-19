@@ -1,0 +1,333 @@
+@font-face {
+  font-family: 'Raleway Regular';
+  src: url(../fonts/Raleway-Medium.ttf);
+}
+
+@font-face {
+  font-family: 'Raleway Black';
+  src: url(../fonts/Raleway-Black.ttf);
+}
+
+@font-face {
+  font-family: 'Raleway Bold';
+  src: url(../fonts/Raleway-Bold.ttf);
+}
+
+
+body{
+    font-family: 'Raleway Regular';
+}
+
+.forny-container a{
+    color: #25a390;
+}
+
+.forny-two-pane,
+.forny-inner{
+    min-height: 100vh;
+    height: auto !important;
+}
+
+.forny-container .mb-10{
+    margin: 0px !important;
+}
+
+.tearms-page h3,
+.reset-password-form h4,
+.card-title{
+    font-family: 'Raleway Bold';
+    display: block;
+    margin: auto;
+    text-align: center;
+    text-transform: uppercase;
+    color: #25a390;
+}
+
+.tearms-page p,
+.reset-password-form p,
+.subtitle{
+    color: #717171;
+}
+
+.tearms-page a,
+.subtitle a{
+    font-family: 'Raleway Bold';
+    color: #25a390;
+}
+
+
+.tearms-page::-webkit-scrollbar,
+.forget-forms::-webkit-scrollbar,
+.login-reg-form::-webkit-scrollbar{
+     width: 8px;
+}
+
+.tearms-page::-webkit-scrollbar-scrollbar-track,
+.forget-forms::-webkit-scrollbar-scrollbar-track,
+.login-reg-form::-webkit-scrollbar-scrollbar-track{
+    background: rgba(58, 94, 145, 0.05); 
+}
+
+.tearms-page::-webkit-scrollbar-thumb,
+.forget-forms::-webkit-scrollbar-thumb,
+.login-reg-form::-webkit-scrollbar-thumb{
+    border-radius: 8px;
+    background: rgba(58, 94, 145, 0.2); 
+}
+
+.tearms-page::-webkit-scrollbar-thumb:hover,
+.forget-forms::-webkit-scrollbar-thumb:hover,
+.login-reg-form::-webkit-scrollbar-thumb:hover {
+    background: rgba(58, 94, 145, 0.3); 
+}
+
+.login-form-container{
+    width: 100%;
+}
+
+.forny-container{
+    position: relative;
+    background-color: transparent !important;
+    overflow: hidden;
+}
+
+.forny-container .background-image{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    background-image: url(../img/bg.png);
+    background-size: cover;
+    z-index: -1;
+    background-position: center !important;
+}
+
+.forny-form .forny-logo{
+    margin-bottom: 15px;
+}
+
+.forny-form .forny-logo img{
+    display: block;
+    margin: auto;
+}
+
+.forny-form .reset-form{
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+
+.forny-form .login-reg-form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.forny-form .login-reg-form .nav-tabs{
+    display: flex;
+    justify-content: center;
+}
+
+.forny-form .login-reg-form .nav-tabs li{
+    width: 50%;
+}
+
+.forny-form .login-reg-form .nav-tabs li a{
+    text-align: center;
+    border: 0;
+}
+
+.forny-form .login-reg-form .nav-tabs li a.active{
+    border-bottom: 2px solid !important;
+    border-color: #25a390 !important;
+    color: #25a390 !important;
+}
+
+.forny-form .login-reg-form .nav-tabs li a span{
+    text-transform: capitalize;
+}
+
+.forny-form .form-group{
+    position: relative;
+    border-radius: 25px !important;
+    border: 0 !important;
+    background: transparent !important;
+    margin-top: 5px;
+}
+
+.forny-form .form-control{
+    background-color: #fff;
+    color: #3c60e2;
+    border-radius: 25px !important;
+}
+
+.forny-container .alert{
+    margin: 10px 0px;
+}
+
+.forny-form .form-group input{
+    border: 2px solid !important;
+    border-color: #fff !important;
+    transition: 0.2s !important;
+    border-radius: 25px !important;
+}
+
+.forny-form .form-group input:focus{
+    border-color: #25a390 !important;
+}
+
+.forny-form .btn{
+    border-radius: 25px !important;
+}
+
+.forny-form .btn.btn-primary{
+    background-color: #25a390;
+}
+
+.forny-form .btn.btn-primary:hover{
+    background-color: #1d8071;
+}
+
+.forny-form .error-text{
+    font-size: 0.9rem;
+    color: #e1394d;
+}
+
+.tearms-page,
+.forget-forms{
+    padding: 50px;
+    border-radius: 10px;
+}
+
+.tearms-page h3{
+    padding-bottom: 20px;
+}
+
+.iti input, .iti input[type=text]{
+    border: 0px;
+    border-radius: 25px;
+}
+
+form.reg_form label{
+    background: transparent !important;
+}
+
+.reset-password-form button:last-child{
+    background-color: rgba(0,0,0,0.05);
+}
+
+.affiliate-description{
+    color: #fff;
+    display: flex;
+    align-items: center;
+    padding-bottom: 60px;
+}
+
+.affiliate-description .paragraph-container{
+    padding-right:150px;
+    padding-left: 30px;
+    height: 60vh;
+    overflow: auto;
+    z-index: 10;
+    direction: rtl;
+}
+
+.affiliate-description .paragraph-container::-webkit-scrollbar {
+  width: 10px;
+}
+.affiliate-description .paragraph-container::-webkit-scrollbar-track {
+  background: #30b09d; 
+}
+.affiliate-description .paragraph-container::-webkit-scrollbar-thumb {
+  background: #6dd1c2; 
+}
+.affiliate-description .paragraph-container::-webkit-scrollbar-thumb:hover {
+  background: #59ab9f; 
+}
+
+.affiliate-description .paragraph-container *{
+    position: relative;
+    z-index:2;
+}
+
+
+.affiliate-description h1,
+.affiliate-description h2,
+.affiliate-description h3,
+.affiliate-description h4,
+.affiliate-description h5,
+.affiliate-description h6{
+    font-family: 'Raleway Black';
+}
+
+.affiliate-description p{
+    margin: 0;
+    font-size: 1rem;
+}
+
+@media(max-width: 600px){
+    .forny-form{
+        padding: 0px !important;
+    }
+    .forny-form .login-reg-form{
+        padding: 25px;
+    }
+    .language-changer{
+        border-radius: 50%;
+        margin: 20px;
+        filter: drop-shadow(0 0 0.75rem rgba(0,0,0,0.4));
+        position: fixed !important;
+    }
+    .language-changer .dropdown-toggle{
+        width:50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 0;
+        padding: 0;
+    }
+}
+
+@media(max-width: 992px){
+    .forny-container .background-image{
+        background-image: url(../img/bg-mobile.png);
+        background-position: bottom;
+    }
+    .forny-form{
+        width: 100%;
+        padding: 0;
+    }
+    .tearms-page,
+    .forget-forms,
+    .login-reg-form{
+        margin: auto;
+        width: 95%;
+        background-color: #fff;
+        border-radius: 25px;
+        padding: 25px;
+    }
+    .forny-form-wrapper{
+        display: block !important;
+    }
+    .affiliate-description{
+        text-align: left;
+    }
+    .affiliate-description .image-container{
+         border-bottom-left-radius: 0px;
+         border-top-right-radius: 25px;
+         background-color: #25a390;
+    }
+    .affiliate-description p{
+        font-size: 1.1rem;
+    }
+    .affiliate-description .paragraph-container{
+        padding: 30px;
+    }
+    .affiliate-description .cog{
+        display: none;
+    }
+}

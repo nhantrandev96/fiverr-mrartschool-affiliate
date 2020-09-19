@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+ 
+<config>
+    <modules>
+        <AffiliatePro_Magento1>
+            <version>0.1.0</version>
+        </AffiliatePro_Magento1>
+    </modules>
+    <frontend>
+    	<layout>
+            <updates>
+                <AffiliatePro_Magento1 module="AffiliatePro_Magento1">
+                    <file>affiliatePro_magento1.xml</file>
+                </AffiliatePro_Magento1>
+            </updates>
+        </layout>
+    </frontend>
+</config>

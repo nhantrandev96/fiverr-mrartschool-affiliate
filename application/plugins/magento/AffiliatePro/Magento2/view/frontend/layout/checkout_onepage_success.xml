@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<body>
+    <referenceContainer name="content">
+        <block class="Magento\Checkout\Block\Onepage\Success" name="affiliatePro.order.success" template="AffiliatePro_Magento2::checkout/success/sendOrder.phtml" after="-">
+        </block>
+    </referenceContainer>
+</body>

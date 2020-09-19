@@ -1,0 +1,191 @@
+@import 'vendor/bootstrap/variables.less';
+
+body:empty {
+    &:after {
+        content: "Drag and Drop elements from the left to start building your page.";
+        display: block;
+        position: absolute;
+        width: 600px;
+        text-align: center;
+        top: ~"calc(50% - 55px)";
+        left: ~"calc(50% - 300px)";
+        background-color: lighten(#263845, 8%);
+        color: lighten(#b1d2e5, 8%);
+        font-size: 13px;
+        border-radius: 3px;
+        padding: 15px;
+        font-weight: 500;
+        text-transform: uppercase;
+    }
+}
+
+#edit-columns {
+	background-color: @brand-primary;
+	color: #fff;
+	padding: 6px;
+	text-align: center;
+	position: absolute;
+	z-index: 3;
+	transition: all 0.20s linear;
+	pointer-events: all;
+
+	&:hover {
+		cursor: pointer;
+		background-color: darken(@brand-primary, 5%);
+	}
+}
+
+input[type="checkbox"] {
+	pointer-events: none;
+}
+
+.container {
+	min-height: 50px;
+	
+	&:empty {
+		border: 1px dashed darken(@gray, 10%);
+		min-height: 200px;
+	}
+}
+
+div {
+	&:empty {
+		border: 1px dashed darken(@gray, 10%);
+		min-height: 100px;
+	}	
+}
+
+.row {
+	min-height: 50px;
+	
+	&:empty {
+		border: 1px dashed darken(@gray, 10%);
+		min-height: 150px;
+		width: 100%;
+		min-width: 500px;
+	}
+}
+
+iframe {
+	pointer-events: none;
+}
+
+img.helper {
+	width: 40% !important;
+}
+
+[class^="col-"]:empty {
+	min-height: 150px;
+	border: 1px dashed darken(@gray, 10%);
+}
+
+body {
+	user-select: none;
+	overflow-x: hidden;
+
+	> .row {
+		margin: 0;
+	}
+}
+
+.center-preview {
+	display: block !important;
+	margin: 0 auto !important;
+	text-align: center;
+}
+
+form {
+	min-height: 50px;
+
+	&:empty:before {
+		pointer-events: none;
+		display: block;
+		width: 100%;
+		height: 100px;
+		content: 'Drag form elements here';
+		text-align: center;
+		background-color: #eee;
+		color: #919191;
+		font-size: 22px;
+		border: 2px dashed #919191;
+		padding-top: 33px;
+	}
+}
+
+[contenteditable=true] {
+	outline: 2px solid #404040;
+}
+
+.ui-resizable {
+	position: relative;
+	box-sizing: border-box;
+}
+
+.ui-wrapper {
+	overflow: visible !important;
+}
+
+.ui-resizable-handle {
+	width: 9px;
+	height: 9px;
+	display: block;
+	border: 1px solid #179ede;
+	background-color: #179ede;
+	border-radius: 50%;
+	//box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+	z-index: 1000;
+	pointer-events: all;
+	touch-action: none;
+	font-size: 0.1px;
+	-ms-touch-action: none;
+	position: absolute;
+}
+
+.ui-resizable-se {
+	cursor: se-resize;
+	right: -5px;
+	bottom: -5px;
+}
+
+.ui-resizable-nw {
+	left: -5px;
+	top: -5px;
+	cursor: nw-resize;
+}
+
+.ui-resizable-ne {
+	right: -5px;
+	top: -5px;
+	cursor: ne-resize;
+}
+
+.ui-resizable-sw {
+	left: -5px;
+	bottom: -5px;
+	cursor: sw-resize;
+}
+
+.ui-resizable-w {
+	top: 40%;
+	left: -5px;
+	cursor: w-resize;
+}
+
+.ui-resizable-s {
+	left: 50%;
+	bottom: -5px;
+	cursor: s-resize;
+}
+
+.ui-resizable-e {
+	top: 40%;
+	right: -5px;
+	cursor: e-resize;
+}
+
+.ui-resizable-n {
+	top: -5px;
+	left: 50%;
+	cursor: n-resize;
+}
+

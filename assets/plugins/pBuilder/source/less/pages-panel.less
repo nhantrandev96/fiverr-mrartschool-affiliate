@@ -1,0 +1,87 @@
+#pages {
+    ul {
+        text-align: center;
+        margin-top: 25px;
+
+        li {
+            padding: 10px 15px;
+            background-color: @panel-box-background;
+            margin: 0 30px 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border-radius: 3px;
+            color: lighten(@panel-light-color, 20%);
+            font-weight: 500;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            text-transform: capitalize;
+
+            &.active {
+                background-color: @accent-color;
+
+                &:hover {
+                    background-color: @accent-color;
+                }
+            }
+
+            &:hover {
+                background-color: @accent-color;
+            }
+        }
+    }
+
+    .page-settings {
+        padding: 20px 30px 0 30px;
+        margin-top: 20px;
+        border-top: 1px solid lighten(@panel-border-color, 10%);
+
+        label {
+            color: @panel-color;
+            font-size: 13px;
+            font-weight: 400;
+        }
+
+        .form-control {
+            background-color: @panel-box-background;
+            border: @panel-border;
+            .placeholder(@panel-color);
+            color: @panel-color;
+        }
+    }
+
+    .action-buttons {
+        margin: 0 30px;
+        font-size: 18px;
+        padding-top: 5px;
+        .clearfix();
+
+        button {
+            cursor: pointer;
+            padding: 5px;
+            border: 1px solid lighten(@panel-border-color, 10%);
+            background-color: @panel-box-background;
+            border-radius: 2px;
+
+            &:disabled {
+                cursor: not-allowed;
+                background-color: @panel-background !important;
+                border-color: lighten(@panel-border-color, 10%) !important;
+            }
+
+            &:hover {
+                border-color: lighten(@panel-border-color, 30%);
+            }
+        }
+    }
+
+    .buttons-bottom {
+        text-align: center;
+        margin: 20px 0 10px;
+
+        .btn {
+            border-radius: 2px;
+            padding: 7px 10px;
+        }
+    }
+}

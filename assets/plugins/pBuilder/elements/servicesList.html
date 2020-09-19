@@ -1,0 +1,78 @@
+<style>
+
+.services-list {
+    text-align: center;
+    background-color: #FCFCFC;
+    padding: 30px;
+    border: 1px solid #e0eded;
+}
+
+.services-list .service-box {
+    background-color: #fff;
+    border: 1px solid #e0eded;
+    padding: 15px 0;
+}
+
+.services-list .service-icon {
+    text-align: center;
+    padding: 10px 0;
+}
+
+.services-list .fa {
+    font-size: 64px;
+}
+
+</style>
+
+<div class="services-list">
+    <div class="row">
+        <div class="col-lg-3 col-md-6">
+            <div class="service-box">
+                <div class="service-icon"><i class="fa fa-lightbulb-o"></i></div>
+                <h4>Generating ideas</h4>
+                <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam pulvinar velit nulla. Curabitur ullamcorper quis nisi nec aliquam. Quisque interdum efficitur augue.</p>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+           <div class="service-box">
+                <div class="service-icon"><i class="fa fa-keyboard-o"></i></div>
+                <h4>Prototype Model</h4>
+                <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam pulvinar velit nulla. Curabitur ullamcorper quis nisi nec aliquam. Quisque interdum efficitur augue.</p>
+           </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+           <div class="service-box">
+                <div class="service-icon"><i class="fa fa-code"></i></div>
+                <h4>Design and Code</h4>
+                <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam pulvinar velit nulla. Curabitur ullamcorper quis nisi nec aliquam. Quisque interdum efficitur augue.</p>
+           </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+            <div class="service-box">
+                <div class="service-icon"><i class="fa fa-rocket"></i></div>
+                <h4>Launching and Monitoring</h4>
+                <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam pulvinar velit nulla. Curabitur ullamcorper quis nisi nec aliquam. Quisque interdum efficitur augue.</p>
+            </div>
+        </div>             
+    </div>
+
+</div>
+
+
+<script>
+	({
+		name: 'services list',
+	 	nodes: '*',
+	 	frameworks: ['bootstrap'],
+	 	class: 'services-list',
+	 	types: ['flow'],
+	 	validChildren: ['flow'],
+	 	category: 'components',
+        icon: 'lifebuoy',
+	 	previewScale: '0.1',
+	 	hiddenClasses: ['services-list']
+	})
+</script>

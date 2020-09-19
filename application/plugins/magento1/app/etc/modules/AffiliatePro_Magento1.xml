@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+ 
+<config>
+    <modules>
+        <AffiliatePro_Magento1>
+            <active>true</active>
+            <codePool>local</codePool>
+        </AffiliatePro_Magento1>
+    </modules>
+</config>

@@ -1,0 +1,62 @@
+#settings {
+    padding-top: 20px;
+
+    .with-toggle {
+        > .label {
+            padding: 0;
+            font-size: 15px;
+            font-weight: 400;
+        }
+
+        > .toggle {
+            vertical-align: bottom;
+            margin-top: 10px;
+            width: 80px;
+        }
+    }
+
+    .with-input {
+        > .label {
+            padding: 4px;
+            font-size: 15px;
+            font-weight: 400;
+        }
+
+        > .toggle {
+            vertical-align: bottom;
+            margin-top: 10px;
+            width: 80px;
+        }
+    }
+    
+    .setting {
+        border-bottom: 1px solid lighten(@panel-border-color, 10%);
+        padding-bottom: 5px;
+
+        &:last-of-type {
+            border-bottom: none;
+        }
+    }
+
+    .settings-container {
+        margin: 15px 0;
+    }
+
+    .accordion-body {
+        margin: 0 30px;
+
+        p {
+            font-size: 13px;
+            color: darken(@panel-color, 10%);
+            margin-top: 10px;
+        }
+
+        .form-control {
+            margin-top: 6px;
+            background-color: @panel-box-background;
+            color: @panel-color;
+            .placeholder(@panel-color);
+            border: @panel-border;
+        }
+    }
+}

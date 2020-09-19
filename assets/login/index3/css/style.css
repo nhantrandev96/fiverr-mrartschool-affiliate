@@ -1,0 +1,405 @@
+@import 'https://fonts.googleapis.com/css?family=Nunito:400,600,700&display=swap'
+body{
+    font-family: 'Nunito';
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+}
+    
+body{
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
+.header {
+    height: 40%;
+    width: 100%;
+    background: black;
+    box-shadow: 10px 8px 16px 0px rgba(0, 0, 0, 0.5);
+}
+.brand{
+    font-size: 50px;
+    color: white;
+    text-decoration: none;
+    padding: 20px;
+    float: left;
+}
+.left{
+    float: right;
+    margin: 0;
+    
+}
+ul>li {
+    list-style: none;
+}
+li>a {
+    text-decoration: none;
+    color: white;
+}
+.indent{
+    float: left;
+}
+.box{
+    width:200px; 
+    height:30px; 
+    border-radius:5%;
+}
+.button {
+    width: 100%;
+    border-radius: 50px;
+    border: 1px solid #10416a;
+    padding: 10px 20px;
+    margin-bottom: 15px;
+    color: #ffffff;
+    background: #10416a;
+    text-align: center;
+    font-size: 15px;
+    font-family: 'Nunito';
+    margin-top: 5px;
+    font-weight: 900;
+}
+.btn {
+    border: none;
+    background-color: black;
+    font-size: 30px;
+    color: white;
+}
+
+.login-box {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    flex-wrap: wrap;
+}
+.left-side {
+    flex: 0 0 40%;
+}
+.right-side{
+    flex: 0 0 60%;
+    position: relative;
+}
+.right-side img {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    display: block;
+}
+.logo {
+    margin-bottom: 25px;
+}
+.logo img {
+    display: block;
+    margin: auto;
+}
+input.box {
+    width: 100%;
+    border-radius: 50px;
+    border: 1px solid #cdcdcd;
+    padding: 5px 20px;
+    margin-bottom: 15px;
+    color: #cdcdcd;
+    height: 40px;
+}
+p.text {
+    margin-top: 0;
+    margin-bottom: 30px;
+    max-width: 80%;
+    margin-right: auto;
+    margin-left: auto;
+    line-height: 25px;
+    color: #818181;
+    margin-top: 10px;
+}
+.right-side h2 {
+    position: absolute;
+    top: 2%;
+    left: 12%;
+    font-size: 48px;
+    font-weight: 800;
+    color: #10416a;
+}
+.text a {
+    padding-left: 5px;
+    font-size: 14px;
+    color: #10416a;
+    text-decoration: none;
+    font-weight: 900;
+}
+.half-inputt {
+    width: 47% !important;
+    margin-left: 4px;
+    margin-right: 4px;
+    max-width: inherit;
+}
+input.box.half-inputt:last-child {
+    margin-right: auto;
+}
+#login form{
+    max-width: 80%;
+    margin: auto;
+}
+#register form, #fog-pass form {
+    max-width: 80%;
+    margin: auto;
+    text-align: left;
+}
+p.text.half-inputt {
+    margin: 0 4px;
+    display: inline;
+    font-size: 14px;
+}
+p.text.half-inputt input {
+    vertical-align: middle;
+    margin-right: 5px;
+    cursor: pointer;
+}
+button.button.submit 
+{
+    max-width: 35%;
+    float: right;
+}
+button.button.sign-in {
+    width: 35%;
+    border: 1px solid #cdcdcd;
+    color: #10416a;
+    background: inherit;
+    font-weight: 900;
+}
+div#fog-pass {
+    display: none;
+}
+p.text.forget-text {
+    text-align: right;
+    font-size: 13px;
+    max-width: 100%;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+p.text.forget-text a {
+    font-size: 13px;
+    font-weight: 600;
+}
+.input-box {
+    position: relative;
+}
+.input-box input.box {
+    padding: 5px 15px 5px 45px;
+    width: 100%;
+}
+.input-box .icon {
+    position: absolute;
+    height: 25px;
+    width: 25px;
+    margin: 7px 10px;
+}
+a.use-trmm {
+    width: 100%;
+    display: block;
+    text-align: left;
+    margin-top: 0;
+    text-decoration: none;
+    color: #818181;
+    text-transform: capitalize;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+a.use-trmm input{
+    vertical-align: middle;
+}
+span.ddlabel {
+    display: none;
+}
+.ddcommon {
+    display: inline-block;
+    width: auto !important;
+}
+.ddChild {
+    height: 40% !important;
+    top: 10% !important;
+    background: #fff;
+    overflow: auto;
+}
+.ddChild ul {
+    padding: 0 10px;
+}
+@media only screen and (max-width: 1024px) {
+    .left-side {
+        flex: 0 0 100%;
+        padding: 40px 0;
+    }
+    .right-side {
+        flex: 0 0 100%;
+        position: relative;
+    }
+    .right-side img {
+        height: 60vh;
+    }
+    .right-side h2 {
+        top: 10%;
+        left: auto;
+        text-align: center;
+        width: 100%;
+    }
+  }
+  @media only screen and (max-width: 767px) {
+  #login form {
+    max-width: 100%;
+    margin: auto;
+    padding: 0px;
+  }
+  p.text {
+    max-width: 100%;
+}
+.half-inputt {
+    width: 100% !important;
+    margin-left: 0;
+    margin-right: 0;
+    max-width: 100%;
+}
+button.button.sign-in {
+    width: 75%;
+    display: block;
+    margin: auto;
+    margin-top: 20px;
+}
+button.button.submit {
+    max-width: 75%;
+    float: unset;
+    margin: auto;
+    display: block;
+    margin-top: 15px;
+}
+.boxx {
+    padding: 0 15px;
+}
+a.use-trmm {
+    text-align: left;
+}
+}
+form.reg_form .form-group {
+    width: 50%;
+    float: left;
+    padding: 0 9px;
+}
+
+@media (max-width:425px){
+    form.reg_form .form-group {
+        width: 100%;
+        float: none;
+    }
+}
+.register-form {
+    display: block;
+    clear: both;
+}
+
+.register-form button {
+    width: 49% !important;
+    float: left;
+    border-radius: 50px;
+    border: 1px solid #10416a;
+    padding: 10px 20px !important;
+    margin-bottom: 15px !important;
+    color: #ffffff;
+    background: #10416a;
+    text-align: center !important;
+    font-size: 15px !important;
+    font-family: 'Nunito' !important;
+    margin-top: 5px !important;
+    font-weight: 900 !important;
+    margin-right: 6px;
+}
+
+.register-form button.change-view {
+    background: #fff;
+    color: #10416a;
+}
+
+/* Common CSS */
+
+.language-changer {
+    position: absolute;
+    right: 8px;
+    top: 5px;
+    z-index: 999;
+}
+
+.language-changer > a > span {
+    color: #829ab0;
+}
+
+.language-changer > a {
+    border: #829ab075 solid 1px;
+}
+
+.btn-registration{
+    display: block;
+    width: 100%;
+}
+
+.reg-agree-label{display: block}
+form.reg_form > legend {
+    display: none;
+}
+.btn-loading {
+  color: transparent !important;
+  pointer-events: none;
+  position: relative;
+}
+
+.btn-loading:after {
+  content: '';
+  -webkit-animation: loader 500ms infinite linear;
+  animation: loader 500ms infinite linear;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  border-right-color: transparent !important;
+  border-top-color: transparent !important;
+  display: block;
+  height: 1.4em;
+  width: 1.4em;
+  position: absolute;
+  left: calc(50% - (1.4em / 2));
+  top: calc(50% - (1.4em / 2));
+  -webkit-transform-origin: center;
+  transform-origin: center;
+  position: absolute !important;
+}
+
+.btn-loading.btn-sm:after, .btn-group-sm > .btn-loading.btn:after {
+  height: 1em;
+  width: 1em;
+  left: calc(50% - (1em / 2));
+  top: calc(50% - (1em / 2));
+}
+
+.btn-loading.btn-secondary:after {
+  border-color: #495057;
+}
+
+@-webkit-keyframes loader {
+  from {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loader {
+  from {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}

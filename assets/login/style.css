@@ -1,0 +1,44 @@
+.login-error {
+	padding: 8px 15px;
+	display: block;
+	width: 100%;
+	background: #ffebe8;
+	border: solid #d11817 1px;
+	border-radius: 3px;
+	color: #d11817;
+	margin: 5px 0;
+	display: none;
+}
+.shake {
+	animation: shake 0.5s; 
+	animation-iteration-count: infinite; 
+}
+
+
+.iti--separate-dial-code .iti__selected-flag {
+	border-radius: 21px;
+}
+#phone{
+	border-radius: 30px;
+	text-align: left;
+	border: 1px solid rgb(236, 236, 236);
+	box-shadow: rgba(131, 131, 131, 0.13) 6px 0px 43px;
+	transition: all 0.3s ease 0s;
+	padding: 13px 13px 13px 84px;
+}
+.forget-form{display: none;}
+
+@keyframes shake {
+	0% { transform: translate(1px, 1px) rotate(0deg); }
+	10% { transform: translate(-1px, -2px) rotate(-1deg); }
+	20% { transform: translate(-3px, 0px) rotate(1deg); }
+	30% { transform: translate(3px, 2px) rotate(0deg); }
+	40% { transform: translate(1px, -1px) rotate(1deg); }
+	50% { transform: translate(-1px, 2px) rotate(-1deg); }
+	60% { transform: translate(-3px, 1px) rotate(0deg); }
+	70% { transform: translate(3px, 1px) rotate(-1deg); }
+	80% { transform: translate(-1px, -1px) rotate(1deg); }
+	90% { transform: translate(1px, 2px) rotate(0deg); }
+	100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+

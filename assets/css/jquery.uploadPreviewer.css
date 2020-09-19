@@ -1,0 +1,40 @@
+.file-preview-button {
+  position: relative;
+}
+
+.file-preview-button input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  opacity: 0;
+  -ms-filter: 'alpha(opacity=0)';
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+}
+
+.upload-priview{
+  width: 47px;
+  height: 53px;
+}
+.upload-priview.up-image            {background-image: url('../images/image.png');background-repeat: no-repeat;}
+.upload-priview.up-video            { background-image: url('../images/video.png');       }
+.upload-priview.up-audio            { background-image: url('../images/audio.png');       }
+.upload-priview.up-pdf              { background-image: url('../images/pdf.png');         }
+.upload-priview.up-spreadsheet      { background-image: url('../images/spreadsheet.png'); }
+.upload-priview.up-powerpoint       { background-image: url('../images/powerpoint.png');  }
+.upload-priview.up-document         { background-image: url('../images/document.png');    }
+.upload-priview.up-zip              { background-image: url('../images/zip.png');         }
+.upload-priview.up-rar              { background-image: url('../images/rar.png');         }
+.upload-priview.up-default-filetype { background-image: url('../images/default.png');     }
+.upload-priview.up-image            {
+  object-fit: scale-down;
+  object-position: center;
+}
+#priview-table {
+  margin-top: 50px;
+}
+#priview-table table,#priview-table table tr:hover,#priview-table table td:hover {
+    background: #fff !important;
+}

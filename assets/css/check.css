@@ -1,0 +1,21 @@
+body,html {
+    height: 100%;
+    background-image: -moz-linear-gradient(0deg, #884d80 0%, #9795f0 0%, #2b5876 0%, #4e4376 100%);
+    background-image: -webkit-linear-gradient(0deg, #884d80 0%, #9795f0 0%, #2b5876 0%, #4e4376 100%);
+    background-image: -ms-linear-gradient(0deg, #884d80 0%, #9795f0 0%, #2b5876 0%, #4e4376 100%);
+}
+
+.system-status > div > div:last-child{
+     width:100px !important
+}
+
+.website-title {
+    color: #fff;
+    font-size: 37px;
+    margin-top: 50px;
+}
+
+.help-text{
+    color: #fff;
+    font-size: 20px;
+}

@@ -1,0 +1,5 @@
+/node_modules
+/backend/project
+/.idea
+.phpstorm.meta.php
+_ide_helper.php

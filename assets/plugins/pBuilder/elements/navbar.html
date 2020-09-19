@@ -1,0 +1,51 @@
+<style>
+	
+</style>
+
+	<div class="navbar">
+		<div class="container">
+			<div class="navbar-header responsive-logo">
+				<button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				</button>
+				<a href="./" class="navbar-brand"><i class="fa fa-rocket text-primary"></i> Architect</a>
+			</div>
+			<nav class="navbar-collapse bs-navbar-collapse collapse" role="navigation" style="height: 1px;">
+			<ul class="nav navbar-nav navbar-right responsive-nav main-nav-list">
+				<li class=""><a href="#focus">Portfolio</a></li>
+				<li class=""><a href="#aboutus">About Us</a></li>
+				<li class=""><a href="#pricingtable">Pricing</a></li>
+				<li class=""><a href="#features">Team</a></li>
+				<li><a href="#contact">Contact</a></li>
+			</ul>
+			</nav>
+		</div>
+	</div>
+
+<script>
+	({
+		name: 'navbar',
+	 	nodes: '*',
+	 	frameworks: ['bootstrap'],
+	 	class: 'navbar',
+	 	types: ['flow'],
+	 	validChildren: ['flow'],
+	 	category: 'components',
+	 	description: 'Navbars are responsive meta components that serve as navigation headers for your application or site.',
+	 	previewScale: '0.2',
+	 	hiddenClasses: ['navbar'],
+	 	icon: 'menu',
+	 	attributes: {
+ 			types: {
+	 			list: [
+	 				{ name: 'default', value: '' },
+	 				{ name: 'fixed top', value: 'navbar-fixed-top' }, 
+	 			],
+ 				value: '',
+ 			}
+ 		}
+	})
+</script>

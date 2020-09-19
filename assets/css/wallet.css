@@ -1,0 +1,300 @@
+.transaction-table{
+  
+}
+.transaction-table .show-recurring-transition .plus{ display: block; }
+.transaction-table .show-recurring-transition .minus{ display: none; }
+.transaction-table .opened-recurring .show-recurring-transition .minus{ display: block; }
+.transaction-table .opened-recurring .show-recurring-transition .plus{ display: none; }
+.transaction-table .transaction-type{
+    text-transform: capitalize;
+}
+.transaction-table .status-text{
+        line-height: 1;
+    white-space: nowrap;
+}
+.transaction-table .payment-method{
+    line-height: 1;
+}
+.transaction-table .checkbox-td{
+    white-space: nowrap;
+    /* background: #eee; */
+    /* padding: 2px 6px; */
+    border-radius: 3px;
+}
+.transaction-table .checkbox-td label{
+    margin: 0;
+}
+.transaction-table .show-child-transaction {
+    border: solid 2px #009CDE;
+    border-radius: 50%;
+    height: 30px;
+    background: #009CDE;
+    width: 30px;
+    color: #fff;
+    font-weight: 900;
+    cursor: pointer;
+}
+.transaction-table .ip-list > li {
+    margin-right: 0px !important;
+}
+.transaction-table .ip-list > li > a{
+    background: #f8f8f8;
+    border-radius: 50%;
+    color: #9aa0ac;
+    display: inline-block;
+    height: 1.5rem;
+    width: 1.5rem;
+    line-height: 1.5rem;
+    text-align: center;
+    font-size: 12px;
+    font-weight:500;
+    border: solid 1px #9aa0ac96;
+}
+.transaction-table .child-row{
+    display: none;
+}
+.p-relative{
+    position: relative;
+}
+.transaction-table tr.child-row td.child-arrow {
+    /*background: #F1F4F6;
+    border: none;*/
+    position: relative;
+    padding: 0;
+}
+
+.transaction-table tr.opened .button-line {
+    height: 100%;
+    width: 2px;
+    background: #009CDE;
+    position: absolute;
+    left: 305;
+    left: 50%;
+}
+.transaction-table tr.child-row td.child-arrow:after {
+    content: '';
+    left: 39%;
+    display: block;
+    height: 15px;
+    width: 15px;
+    background: #009CDE;
+    position: absolute;
+    border-radius: 50%;
+    top: 31%;
+}
+
+.transaction-table tr.opened-recurring td {
+    background: #ffa50061 !important;
+}
+
+.transaction-table tr.opened.highlight td {
+    background: #c4e8ff !important;
+}
+
+.transaction-table tr.child-row td.child-arrow:before {
+    content: '';
+    left: 50%;
+    display: block;
+    height: 100%;
+    width: 2px;
+    background: #009CDE;
+    position: absolute;
+}
+.transaction-table tr.child-row.last-group-row td.child-arrow:before {
+    height: 45%;
+}
+.transaction-table tr.highlight td{
+    background: #DFF1FC;
+    border-color: #7cc1de;
+}
+.transaction-table tr.child-row.recurring {
+    display: table-row;
+}
+.transaction-table .country-dropdown{
+    border-radius: 0;
+    width: 160px;
+    max-height: 250px;
+    overflow: auto;
+    padding: 0;
+}
+.transaction-table .country-dropdown li{
+    border-bottom: solid 1px #eee;
+    display: table;
+    vertical-align: middle;
+    width: 100%;
+}
+.transaction-table .country-dropdown li:last-child{
+    border: none;
+}
+.transaction-table .country-dropdown li .flag{
+    width: 80px;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    padding: 7px 0;
+    margin: 0;
+}
+.transaction-table .country-dropdown li .ip{
+    font-size: 13px;
+    color: #9aa0ac;
+    display: table-cell;
+    vertical-align: middle;
+    white-space: nowrap;
+    padding: 0px 5px;
+}
+
+.checkbox-td label input {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+.checkbox-td label input:checked{
+    border-color:dodgerblue;
+}
+.checkbox-td label input:after {
+    top: 2px !important;
+    left: 2px !important;
+    content: '' !important;
+    width: 14px;
+    height: 14px;
+    background: dodgerblue;
+}
+.table-responsive {
+    overflow-y: hidden;
+}
+
+.transaction-table .actions .btn {
+     border: none !important;
+     font-size: 20px;
+     padding: 5px;
+     min-width: 41px;
+     display: inline-block;
+}
+.transaction-table .actions .wallet-btn {
+    color: #9aa0ac;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+    margin-right: 5px;
+}
+.transaction-table .hover-danger:hover{
+    color: #e84848;
+}
+.transaction-table .hover-info:hover{
+    color: #00bdff;
+}
+
+.transaction-table .wallet-status-switch .radio.radio-inline input:checked + span {
+    background: #9aa0ac;
+    color: #fff;
+}
+.transaction-table .wallet-status-switch .radio.radio-inline:nth-child(1) span {
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    color: #9aa0ac;
+    font-weight: 500;
+}
+.transaction-table .wallet-status-switch label span {
+    display: block;
+    background: #fff;
+    padding: 5px 8px;
+    cursor: pointer;
+    font-size: 12px;
+    border: solid 2px #9aa0ac;
+    white-space: nowrap;
+}
+.transaction-table .wallet-status-switch .radio.radio-inline:nth-child(3) span {
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-left: none;
+    color: #9aa0ac;
+    font-weight: 500;
+}
+.transaction-table .radio.radio-inline.loading img {
+    width: 36px;
+    margin: 0 auto;
+    display: block;
+}
+.transaction-table .btn-wallet-info {
+    background: none;
+    border: none;
+    color: #009cde;
+     width: 24px;
+    height: 24px;
+    margin: 0;
+    padding: 0;
+}
+
+.transaction-table .btn-wallet-info:hover {
+    color: #dfff;
+    background: #009cde;
+    border-radius: 50%;
+   
+}
+
+.transaction-table tr.recurring td:first-child:after, 
+.transaction-table tr.opened-recurring td:first-child:after {
+    border: orange 1px solid;
+   /* content:'';*/
+    height: 101%;
+    width: 2px;
+    position: absolute;
+    left: 11px;
+    top: 0;
+}
+
+.transaction-table tr.opened-recurring td:first-child:after{
+    top: 50%;
+}
+.transaction-table tr.last-recurring td:first-child:after{
+    top:0;
+    height:52%;
+}
+
+.transaction-table tr.recurring td, 
+.transaction-table tr.opened-recurring td {
+    position:relative;
+   
+}
+.transaction-table tr.recurring td {
+    background: #ffa5001f;
+    border-color: #ffa5006b;
+}
+.transaction-table tr.opened-recurring td:first-child:before, 
+.transaction-table tr.last-recurring td:first-child:before {
+    top: 50%;
+    left: 0;
+    width: 12px;
+    background: orange;
+    height: 2px;
+    position: absolute;
+    /*content: '';*/
+}
+
+.popover-body {
+    padding: 14px 10px;
+    font-size: 14px;
+    text-align: center;
+    line-height: 1.6;
+    background: #000;
+    color: #fff;
+    background-color: #000;
+    border-radius: .25rem;
+    box-shadow: none;
+}
+.popover{
+    border: none !important;
+}
+.popover-body a{
+    font-weight:bold;
+    white-space: nowrap;
+}
+.bs-popover-auto[x-placement^=right] .arrow::before, .bs-popover-right .arrow::before {
+    left: 1px;
+    border-right-color: #000;
+}
+.bs-popover-auto[x-placement^=right] .arrow::after, .bs-popover-right .arrow::after {
+    left: 1px;
+    border-right-color: #000;
+}

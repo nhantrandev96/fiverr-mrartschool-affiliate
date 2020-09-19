@@ -1,0 +1,91 @@
+#fonts-modal {
+	.modal-content {
+		border-radius: 0;
+
+		> .modal-header {
+			padding-top: 22px;
+
+			> .close-modal {
+				position: absolute;
+				z-index: 1010;	
+				top: -17px;
+				right: -17px;
+				font-size: 1.6em;
+
+				.fa-circle {
+					color: @panel-background;
+				}
+				
+				&:hover {
+					cursor: pointer;
+					transform: scale(1.12);
+				}
+			}
+
+			> .modal-title {
+				padding-left: 10px;
+			}
+
+			> .pagi-container {
+				margin-right: 80px;
+
+				> .pagination {
+					margin: 0;
+
+					> .disabled > span {
+						background-color: transparent;
+					}
+
+					> .active > span {
+						background-color: @brand-success;
+						border-color: darken(@brand-success, 3%);
+					}
+
+					> li > a {
+						color: @gray;
+						background-color: lighten(@gray-lighter, 2%);
+					}
+				}
+			}
+		}
+
+		.fonts-list {
+			padding: 0;
+			
+			> li {
+				list-style: none;
+				display: inline-block;
+				width: 49.5%;
+				padding: 15px;
+				margin-bottom: 10px;
+				background-color: lighten(@gray-lighter, 1%);
+				.box-shadow(0 1px 1px lighten(@gray-light, 35%));
+				border-radius: 3px;
+				
+				> .font-preview {
+					margin-bottom: 10px;
+					font-size: 22px;
+					color: @gray;
+				}
+
+				> .font-details {
+					font-family: Ubuntu !important;
+					color: @gray-dark;
+				}
+
+				&:hover {
+					cursor: pointer;
+					background-color: lighten(@gray-lighter, 4%);
+				}
+
+				&:nth-child(odd) {
+					margin-right: 13px;
+				}
+			}
+		}
+	}
+
+	.style-tag {
+
+	}
+}

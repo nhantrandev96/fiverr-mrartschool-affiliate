@@ -1,0 +1,46 @@
+<?php
+	$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+	$storeManager  = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+	$base_url      = $storeManager->getStore()->getBaseUrl();
+	$urlInterface  = \Magento\Framework\App\ObjectManager::getInstance()->get('Magento\Framework\UrlInterface');
+	$current_url   = $urlInterface->getCurrentUrl();
+	$order_Id      = $block->getOrderId();
+	$order         = $objectManager->create('Magento\Sales\Api\Data\OrderInterface')->load($order_Id);
+	$order_info    = $order->getData();
+
+	$ipaddress = "";
+	if (getenv("HTTP_CLIENT_IP")) $ipaddress = getenv("HTTP_CLIENT_IP");
+	else if(getenv("HTTP_X_FORWARDED_FOR")) $ipaddress = getenv("HTTP_X_FORWARDED_FOR");
+	else if(getenv("HTTP_X_FORWARDED")) $ipaddress = getenv("HTTP_X_FORWARDED");
+	else if(getenv("HTTP_FORWARDED_FOR")) $ipaddress = getenv("HTTP_FORWARDED_FOR");
+	else if(getenv("HTTP_FORWARDED")) $ipaddress = getenv("HTTP_FORWARDED");
+	else if(getenv("REMOTE_ADDR")) $ipaddress = getenv("REMOTE_ADDR");
+	else $ipaddress = "UNKNOWN";
+
+	$affiliateData = array(
+		"order_id"         => $order_Id,
+		"ip"               => $ipaddress,
+		"order_currency"   => $order_info['order_currency_code'],
+		"order_total"      => $order->getGrandTotal(),
+		"af_id"            => isset($_COOKIE["af_id"]) ? $_COOKIE["af_id"] : '',
+		"base_url"         => base64_encode($base_url),
+		"current_page_url" => base64_encode($current_url),
+		"product_ids"      => array(),
+		"script_name"      => "magento",
+	);
+
+	foreach ($order->getAllItems() as $item) { $affiliateData["product_ids"][] = $item->getProductId(); }
+
+	$request_headers = array();
+	$request_headers[] = 'User-Agent: '. (isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '');
+	$request_headers[] = 'Referer: '. $current_url;
+
+	$request = http_build_query($affiliateData);
+	$curl = curl_init('__baseurl__integration/addOrder?'.$request);
+	curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($curl, CURLOPT_HEADER, false);
+	curl_setopt($curl, CURLOPT_TIMEOUT, 30);
+	curl_setopt($curl, CURLOPT_HTTPHEADER, $request_headers);
+	curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+	
+	curl_exec($curl);

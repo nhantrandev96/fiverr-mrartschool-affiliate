@@ -1,0 +1,38 @@
+<style>
+	
+.jumbotron {
+	text-align: center;
+}
+
+.jumbotron p {
+	margin: 20px 0 30px;
+}
+
+</style>
+
+<div class="jumbotron">
+	<div class="container">
+		<h1>Welcome to Architect!</h1>
+	  	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ut magna id lectus imperdiet pellentesque at pellentesque massa. Vestibulum ac nisi ut ex dignissim maximus id non tellus. Praesent a venenatis erat. Integer sit amet aliquet lectus. Morbi sed ligula eu libero eleifend egestas. Nunc pretium augue vitae tellus finibus.</p>
+	  	<p>
+	  	<a class="btn btn-primary btn-lg" role="button">Learn more</a></p>
+	</div>
+</div>
+
+<script>
+	
+	({ 
+		name: 'jumbotron',
+	 	nodes: '*',
+	 	frameworks: ['bootstrap'],
+	 	class: 'jumbotron',
+	 	types: ['flow'],
+	 	validChildren: ['flow'],
+	 	category: 'components',
+	 	previewScale: '0.2',
+	 	icon: 'header',
+	 	hiddenClasses: ['jumbotron'],
+	 	description: 'Hero unit with basic styling.',
+	});
+
+</script>

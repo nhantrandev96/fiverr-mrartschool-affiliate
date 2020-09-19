@@ -1,0 +1,109 @@
+{
+	"info": {
+		"_postman_id": "7e6f5ad7-1bf4-4b35-b23e-6fe299053898",
+		"name": "Affiliate Pro",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "firstname",
+							"value": "Keri",
+							"type": "text"
+						},
+						{
+							"key": "lastname",
+							"value": "Taylor",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "taylor.keri",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "taylor.keri@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "terms",
+							"value": "true",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://development.affiliatepro.org/api/register",
+					"protocol": "https",
+					"host": [
+						"development",
+						"affiliatepro",
+						"org"
+					],
+					"path": [
+						"api",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Register Custom Field",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://development.affiliatepro.org/api/register",
+					"protocol": "https",
+					"host": [
+						"development",
+						"affiliatepro",
+						"org"
+					],
+					"path": [
+						"api",
+						"register"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "73960e53-a737-4e50-9929-a25ac88b47e8",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "36897689-693b-47bb-8c82-6a3d2858bb26",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

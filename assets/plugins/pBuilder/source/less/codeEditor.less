@@ -1,0 +1,221 @@
+#code-editor-resize-overlay {
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    display: none;
+    position: absolute;
+}
+
+#code-editor-wrapper {
+	height: 500px;
+	z-index: 99999;
+	position: absolute;
+	width: ~"calc(100% - 440px)";
+	bottom: 20px;
+    left: 400px;
+    box-shadow: 0 8px 10px -5px rgba(0,0,0,.14),0 16px 24px 2px rgba(0,0,0,.098),0 6px 30px 5px rgba(0,0,0,0.8);
+    border-radius: 3px;
+    display: none;
+
+    .ui-resizable-se {
+        position: absolute;
+        right: -3px;
+        bottom: -3px;
+        cursor: se-resize;
+        background-position: -64px -224px;
+        background-image: url(images/ui-icons_ffffff_256x240.png);
+    }
+
+    .ui-resizable-e {
+        cursor: e-resize;
+        width: 7px;
+        right: -5px;
+        top: 0;
+        height: 100%;
+        position: absolute;
+    }
+
+    .ui-resizable-s {
+        cursor: s-resize;
+        height: 7px;
+        width: 100%;
+        bottom: -5px;
+        left: 0;
+        position: absolute;
+    }
+
+	#new-library-modal {
+		margin-top: 5%;
+	}
+
+	&.open {
+		display: block;
+		height: 45%;
+	}
+
+	> .code-editor {
+		height: ~"calc(100% - 30px)";
+		font-size: 15px;
+		width: 100%;
+
+		#jscript-code-editor {
+			font-size: 15px;
+		}
+
+		> .editor-column, .libraries-column {
+			height: 100%;
+		}
+
+		> .libraries-column {
+			background-color: @panel-background;
+			color: @panel-light-color;
+			padding: 0;
+
+			> .body {
+				height: 100%;
+				overflow: auto;
+				padding: 0 15px 15px 15px;
+
+				> .form-control {
+					border-radius: 0;
+					background-color: @panel-box-background;
+					border: @panel-border;
+					.placeholder(@panel-color);
+					color: @panel-color;
+				}
+
+				.checkbox {
+					font-size: 13px;
+					border-bottom: @panel-border;
+					padding: 0 15px 10px 20px;
+					margin: 5px -15px 15px -15px;
+				}
+
+				> h4 {
+					font-size: 17px;
+
+					> .icon:hover {
+						cursor: pointer;
+						transform: scale(1.2);
+					}
+				}
+			}
+
+			.libraries-list {
+				list-style: none;
+				padding: 0;
+
+				> li {
+					padding: 5px 10px;
+					margin-bottom: 5px;
+					background-color: @panel-box-background;
+					font-size: 13px;
+					border-radius: 3px;
+
+					> .icon-link-outline {
+						padding-right: 5px;
+						display: none;
+					}
+
+					> .lib-actions {
+						display: inline-block;
+						float: right;
+
+						> .icon {
+							&:hover {
+								transform: scale(1.2);
+								color: #fff;
+							}
+
+							&:first-of-type {
+								margin-right: 5px;
+							}
+						}
+					}
+
+					&:hover {
+						cursor: pointer;
+						background-color: lighten(@panel-box-background, 5%);
+					}
+
+					&.attached {
+						background-color: lighten(@panel-box-background, 15%);
+                        color: #fff;
+
+						> .icon-link-outline {
+							display: inline-block;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	> #editor-header {
+		height: 30px;
+		background-color: @panel-background;
+		color: @panel-color;
+		overflow: hidden;
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+        cursor: move;
+
+		.pretty-select {
+			background: @panel-background;
+			text-transform: capitalize;
+			outline: none;
+			border: none;
+			border-right: 1px solid @panel-box-background;
+			height: 29px;
+		}
+
+		[bl-show-editor="js"] {
+			margin-right: 130px;
+		}
+
+		.btn-success {
+			width: 54px;
+			text-align: center;
+			border: none;
+            background-color: lighten(@panel-box-background, 5%);
+
+			&.active {
+                background-color: lighten(@panel-box-background, 20%);
+			}
+		}
+
+		.btn {
+			border-radius: 0;
+			height: 100%;
+			outline: none;
+		}
+
+		.btn.with-icon {
+			padding: 0;
+			border: none;
+            background-color: @panel-box-background;
+
+            &:last-of-type {
+                border-top-left-radius: 3px;
+            }
+		}
+
+		.icon {
+			font-size: 20px;
+			width: 25px;
+			padding: 5px;
+
+			color: @panel-color;
+			&:hover {
+				cursor: pointer;
+				color: #fff;
+			}
+		}
+	}
+}
+
+#code-editor-wrapper.expanded {
+	height: 100%;
+}
