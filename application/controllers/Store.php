@@ -1258,6 +1258,7 @@ class Store extends MY_Controller {
 
 		if(count($json['errors']) == 0){
 			$post = $this->input->post(null,true);
+			
 			$this->load->model('user_model', 'user');
 			$this->load->model('Product_model');
 			$this->load->library('form_validation');
@@ -1364,17 +1365,6 @@ class Store extends MY_Controller {
 						$json['redirect'] = base_url('usercontrol/dashboard');
 					} else {
 						$post = $this->input->post(null,true);
-						// $this->load->library('form_validation');
-						// $this->form_validation->set_rules('f_name', 'First Name', 'required|trim');
-						// $this->form_validation->set_rules('l_name', 'Last Name', 'required|trim');
-						// $this->form_validation->set_rules('username', 'Username', 'required|trim');
-						// $this->form_validation->set_rules('email', 'Email', 'required|valid_email|xss_clean');
-						// $this->form_validation->set_rules('phone', 'Phone', 'required');
-						// $this->form_validation->set_rules('password', 'Password', 'required|trim', array('required' => '%s is required'));
-						// $this->form_validation->set_rules('c_password', 'Confirm Password', 'required|trim', array('required' => '%s is required'));
-						// $this->form_validation->set_rules('c_password', 'Confirm Password', 'required|trim|matches[password]', array('required' => '%s is required'));
-						
-						// $json['errors'] = array();
 
 						$register_form = $this->PagebuilderModel->getSettings('registration_builder');
 						if($register_form){
@@ -1482,11 +1472,11 @@ class Store extends MY_Controller {
 								'email'                     => $this->input->post('email',true),
 								'username'                  => $this->input->post('username',true),
 								'password'                  => sha1($this->input->post('password',true)),
-								'refid'                     => $refid,
+								'refid'                     => !empty($refid) ? $refid : $this->cart->getReferId(),
 								'type'                      => $user_type,
 								'Country'                   => $geo['id'],
 								'City'                      => (string)$geo['city'],
-								'phone'                     => $geo['city'],
+								'phone'                     => $this->input->post('phone',true),
 								'twaddress'                 => '',
 								'address1'                  => '',
 								'address2'                  => '',
@@ -1504,7 +1494,7 @@ class Store extends MY_Controller {
 								'facebook_id'               => '',
 								'twitter_id'                => '',
 								'umode'                     => '',
-								'PhoneNumber'               => '',
+								'PhoneNumber'               => $this->input->post('phone',true),
 								'Addressone'                => '',
 								'Addresstwo'                => '',
 								'StateProvince'             => '',

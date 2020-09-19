@@ -92,7 +92,7 @@
 													<div class="form-group">
 														<label for="<?= $name ?>"><?= $label ?></label>
 														<div>
-															<input id="phone" type="text" value="<?= $ivalue ?>">
+															<input id="phone" name="phone" type="text" value="<?= $ivalue ?>">
 														</div>
 													</div>
 													<script type="text/javascript">
